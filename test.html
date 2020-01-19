@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+</head>
+<body>
+
+    <script>
+    // lets construct some queryURLs
+// this query works (use to debug)
+// https://api.themoviedb.org/3/discover/movie?primary_release_date.gte=2014-09-15&primary_release_date.lte=2014-10-22&api_key=acb4c32a00f4cc5e0b30b2fb2f5a1adb
+
+// api key
+var apiKey = "&api_key=acb4c32a00f4cc5e0b30b2fb2f5a1adb";
+// by year range
+var eighties = {
+    start: "primary_release_date.gte=1980-01-01",
+    end: "&primary_release_date.lte=1989-12-31"
+}
+var nineties = {
+    start: "primary_release_date.gte=1990-01-01",
+    end: "&primary_release_date.lte=1999-12-31"
+}
+var twoThousands = {
+    start: "primary_release_date.gte=2000-01-01",
+    end: "&primary_release_date.lte=2009-12-31"
+}
+var twentyTens = {
+    start: "primary_release_date.gte=2010-01-01",
+    end: "&primary_release_date.lte=2019-12-31"
+}
+// default query
+var defaultURL = "https://api.themoviedb.org/3/discover/movie?";
+
+// query constructor
+var chosen = nineties;
+var chosenStart = chosen.start;
+var chosenEnd = chosen.end;
+console.log(chosenStart); // returns 1980-01-01
+var yearQueryURL = defaultURL + chosenStart + chosenEnd;
+console.log(yearQueryURL); // https://api.themoviedb.org/3/discover/movie?primary_release_date.gte=1980-01-01&primary_release_date.lte=1989-12-31&api_key=acb4c32a00f4cc5e0b30b2fb2f5a1adb
+
+
+// genre codes
+var genres = [
+    {
+    "id": 28,
+    "name": "Action"
+    },
+    {
+    "id": 12,
+    "name": "Adventure"
+    },
+    {
+    "id": 16,
+    "name": "Animation"
+    },
+    {
+    "id": 35,
+    "name": "Comedy"
+    },
+    {
+    "id": 80,
+    "name": "Crime"
+    },
+    {
+    "id": 99,
+    "name": "Documentary"
+    },
+    {
+    "id": 18,
+    "name": "Drama"
+    },
+    {
+    "id": 10751,
+    "name": "Family"
+    },
+    {
+    "id": 14,
+    "name": "Fantasy"
+    },
+    {
+    "id": 36,
+    "name": "History"
+    },
+    {
+    "id": 27,
+    "name": "Horror"
+    },
+    {
+    "id": 10402,
+    "name": "Music"
+    },
+    {
+    "id": 9648,
+    "name": "Mystery"
+    },
+    {
+    "id": 10749,
+    "name": "Romance"
+    },
+    {
+    "id": 878,
+    "name": "Science Fiction"
+    },
+    {
+    "id": 10770,
+    "name": "TV Movie"
+    },
+    {
+    "id": 53,
+    "name": "Thriller"
+    },
+    {
+    "id": 10752,
+    "name": "War"
+    },
+    {
+    "id": 37,
+    "name": "Western"
+    }
+]
+
+var chosenGenreName = genres[17].name;
+var chosenGenreID = "&with_genres="+genres[17].id;
+
+console.log(chosenGenreName);
+console.log(chosenGenreID);
+
+var genreYearQueryURL = yearQueryURL + chosenGenreID;
+console.log(genreYearQueryURL);
+
+// add ratings 
+var ratingFloor = 8.0;
+var ratingFloorQuery = "&vote_average.gte="+ratingFloor;
+
+// query with year + genre + ratings floor
+var ratingGenreYearQueryURL = genreYearQueryURL;
+console.log(ratingGenreYearQueryURL);
+
+// filter by english language movies
+var cleanQuery = ratingGenreYearQueryURL + "&language=en" + apiKey;
+console.log(cleanQuery);
+
+// get list of all averages
+var page = 1;
+var page = 1;
+var cleanQueryPage = cleanQuery + "&page" + page;
+var ratings = [];
+
+
+$.ajax({
+    url: cleanQueryPage,
+    method: "GET"
+}).then(function(response) {
+
+
+
+for (let i = 0; i < 5; i++) {
+    var totalPages = parseInt(response.total_pages);
+    var totalResults = parseInt(response.total_results);
+    cleanQueryPage = cleanQuery + "&page" + page;
+
+    $.ajax({
+    url: cleanQueryPage,
+    method: "GET"
+    }).then(function(response) {
+    console.log(response);
+
+    
+
+    console.log(totalPages);
+    console.log(totalResults);
+    var resultsOnLastPage = (totalResults % totalPages);
+
+    console.log(resultsOnLastPage);
+
+    var testRating = response.results[0].vote_average;
+    console.log(testRating);
+
+        for (let j = 0; j < 20; j ++) {
+            var rating = response.results[j].vote_average;
+            ratings.push(rating);
+            console.log(ratings);
+        }
+    });
+
+
+    page++;
+};
+
+});
+
+
+</script>
+
+    
+</body>
+</html>
