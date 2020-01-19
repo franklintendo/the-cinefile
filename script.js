@@ -26,7 +26,7 @@ var twentyTens = {
     end: "&primary_release_date.lte=2019-12-31"
 }
 
-var chosenDecade = twoThousands;
+var chosenDecade = twentyTens;
 var chosenStart = chosenDecade.start;
 var chosenEnd = chosenDecade.end;
 console.log(chosenStart); // returns 1980-01-01
@@ -34,8 +34,8 @@ var yearFilter = chosenStart + chosenEnd;
 
 // genre filter
 var genresList = genres;    
-var chosenGenreName = genresList[16].name;
-var chosenGenreID = genresList[16].id;
+var chosenGenreName = genresList[8].name;
+var chosenGenreID = genresList[8].id;
 
 var genreFilter = "&with_genres=" + chosenGenreID;
 
@@ -52,6 +52,7 @@ var cleanQuery = queryURL + "&sort_by=vote_average.desc" + "&language=en" + apiK
 console.log(cleanQuery);
 
 // get a list of movies;
+var masterList = [];
 
 $.ajax({
     url: cleanQuery,
@@ -76,15 +77,33 @@ $.ajax({
                     var movie = response2.results[i].title;
                     movieList.push(movie);
 
+                    var movieChosen = movie.trim();
+                    movieChosen = movieChosen.replace(" ","+")
+                    var queryURLomdb = "https://www.omdbapi.com/?t=" + movieChosen + "&apikey=trilogy";
+
+                     // Creates AJAX call for the specific movie button being clicked
+                    $.ajax({
+                    url: queryURLomdb,
+                    method: "GET"
+                    }).then(function(response3) {
+                        var poster = response3.Poster;
+                        var imgEl = $("<img>");
+                        imgEl.attr("src", poster).attr("alt",response3.Title);
+                        $(".posters").append(imgEl);
+                    });
+
                 }
             }
             console.log(movieList);
-
+            console.log(movieList.length);
+            masterList = movieList;
         });
-
+        
     };
-
+    console.log(masterList);
+    console.log(masterList.length);
   });
+
 
 
   
