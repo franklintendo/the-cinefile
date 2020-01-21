@@ -2,7 +2,8 @@ var userGenreName = "";
 var userGenreId = "";
 
 
-
+        // Dynamically generate buttons based
+        // on the genres a user can choose
         for (var i=0;i < genres.length;i++) {
             var column = $('<div class="column is-narrow">');
             var button = $('<button class="button genre-choice-button">');
@@ -16,8 +17,6 @@ var userGenreId = "";
 
         // If you click on any of the genre buttons
         $('.genre-choice-button').on("click", function(){
-            
-            
             if ($(this).hasClass('genre-chosen')) {
                 // If the genre is already selected, then deselect it and 
                 //display all of your options again
