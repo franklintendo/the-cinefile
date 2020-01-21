@@ -5,7 +5,7 @@ var userGenreId = "";
 
         for (var i=0;i < genres.length;i++) {
             var column = $('<div class="column is-narrow">');
-            var button = $('<button class="button is-large genre-choice-button">');
+            var button = $('<button class="button genre-choice-button">');
             
             column.append(button);
             button.text(genres[i].name);
