@@ -18,6 +18,10 @@ h1 {
     font-family: 'Playfair Display SC', serif;
 
   }
+
+  img {
+      margin: 10px;
+  }
 .is-horizontal-center{
     justify-content: center;
 }
