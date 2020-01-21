@@ -1,6 +1,6 @@
 
 h1 {
-    font-size: 3em;
+    font-size: 2em;
     font-family: 'Playfair Display SC', serif;
 }
 .content {
@@ -29,11 +29,9 @@ h1 {
     color: lightseagreen;  
     font-family: 'Playfair Display SC', serif;
 }
-.content {
-    float: right;
-}
 
 footer {
+    text-align: ;
     font-family: 'Playfair Display SC', serif;
 
 }
