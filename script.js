@@ -2,6 +2,9 @@
 // this query works (use to debug)
 // https://api.themoviedb.org/3/discover/movie?primary_release_date.gte=2014-09-15&primary_release_date.lte=2014-10-22&api_key=acb4c32a00f4cc5e0b30b2fb2f5a1adb
 
+
+function generateMovies(genreID) {
+
 // api key
 var apiKey = "&api_key=acb4c32a00f4cc5e0b30b2fb2f5a1adb";
 
@@ -23,7 +26,7 @@ var yearFilter = chosenStart + chosenEnd;
 // genre filter
 var genresList = genres;    
 var chosenGenreName = genresList[1].name;
-var chosenGenreID = genresList[1].id;
+var chosenGenreID = genreID;
 
 var genreFilter = "&with_genres=" + chosenGenreID;
 
@@ -97,6 +100,6 @@ $.ajax({
     // console.log(masterList.length);
   });
 
-
+};
 
   

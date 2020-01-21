@@ -1,5 +1,5 @@
 var userGenreName = "";
-        var userGenreId = "";
+var userGenreId = "";
 
 
 
@@ -23,8 +23,9 @@ var userGenreName = "";
         });
         $('#submit-genre-button').on("click", function(){
             // alert(userGenre);
-
+            var genreID = userGenreId;
             $('.genre-choice-button').attr("style", "display: none;");
             $('.genre-chosen').attr('style','display: block;');
             $('.genre-chosen').addClass('is-large');
+            generateMovies(genreID);
         });
