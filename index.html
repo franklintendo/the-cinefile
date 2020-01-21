@@ -25,101 +25,22 @@
     </div>
     </nav>
     
-<div class="container-fluid"> 
+<div id="genre-buttons" class="container-fluid"> 
 
-    <p class="buttons">
+    <!-- <p class="buttons">
         <button class="button is-medium">
             <span class="icon is-small">
             <i class="fas fa-heading"></i>
             </span>
         </button>
-    
-        <button class="button is-medium">
-            <span class="icon is-medium">
-            <i class="fas fa-heading fa-2x"></i>
-            </span>
-        </button>
-        <button class="button is-medium">
-            <span class="icon is-medium">
-            <i class="fas fa-heading fa-2x"></i>
-            </span>
-        </button>
+    </p> -->
 
-        <button class="button is-medium">
-            <span class="icon is-medium">
-            <i class="fas fa-heading fa-2x"></i>
-            </span>
-        </button>
-    </p>
     <p class="buttons">
-        <button class="button is-medium">
-            <span class="icon is-small">
-            <i class="fas fa-heading"></i>
-            </span>
-        </button>
-        <button class="button is-medium">
-            <span class="icon is-medium">
-            <i class="fas fa-heading fa-2x"></i>
-            </span>
-        </button>
-        <button class="button is-medium">
-            <span class="icon is-medium">
-            <i class="fas fa-heading fa-2x"></i>
-            </span>
-        </button>
-
-        <button class="button is-medium">
-            <span class="icon is-medium">
-            <i class="fas fa-heading fa-2x"></i>
-            </span>
-        </button>
+        <button class="button is-outlined">Action</button>
+        <button class="button is-outlined">Adventure</button>
+        <button class="button is-outlined">Animation</button>
     </p>
-    <p class="buttons">
-        <button class="button is-medium">
-            <span class="icon is-medium">
-            <i class="fas fa-heading"></i>
-            </span>
-        </button>
-        <button class="button is-medium">
-            <span class="icon is-medium">
-            <i class="fas fa-heading fa-2x"></i>
-            </span>
-        </button>
-        <button class="button is-medium">
-            <span class="icon is-medium">
-            <i class="fas fa-heading fa-2x"></i>
-            </span>
-        </button>
-
-        <button class="button is-medium">
-            <span class="icon is-medium">
-            <i class="fas fa-heading fa-2x"></i>
-            </span>
-        </button>
-    </p>
-    <p class="buttons">
-        <button class="button is-medium">
-            <span class="icon is-medium">
-            <i class="fas fa-heading"></i>
-            </span>
-        </button>
-        <button class="button is-medium">
-            <span class="icon is-medium">
-            <i class="fas fa-heading fa-2x"></i>
-            </span>
-        </button>
-        <button class="button is-medium">
-            <span class="icon is-medium">
-            <i class="fas fa-heading fa-2x"></i>
-            </span>
-        </button>
-
-        <button class="button is-medium">
-            <span class="icon is-medium">
-            <i class="fas fa-heading fa-2x"></i>
-            </span>
-        </button>
-    </p>
+   
     <!-- <div class="posters"></div> -->
 </div>
 
@@ -128,6 +49,17 @@
         <span class="text-muted">Footer</span>
       </div>
     </footer>
+    <script>
+    
+    for (var i=0;i < genres.length;i++) {
+            var column = $('<div class="column is-narrow">');
+            var button = $('<button class="button is-large">');
+            column.append(button);
+            button.text(genres[i].name);
+            $('#genre-buttons').append(column);
+        }
+    
+    </script>
     <script src="genres.js"></script>
     <script src="script.js"></script>
   </body>
