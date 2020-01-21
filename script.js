@@ -2,6 +2,59 @@
 // this query works (use to debug)
 // https://api.themoviedb.org/3/discover/movie?primary_release_date.gte=2014-09-15&primary_release_date.lte=2014-10-22&api_key=acb4c32a00f4cc5e0b30b2fb2f5a1adb
 
+function generateRandomMovie() {
+    var movieLength = movies.length;
+    console.log(movieLength);
+
+    var movie = movies[Math.floor(Math.random() * movieLength)].entity;
+    console.log(movie);
+    
+    var queryURLomdb = "https://www.omdbapi.com/?t=" + movie + "&apikey=trilogy";
+
+        // Creates AJAX call for the specific movie button being clicked
+    $.ajax({
+    url: queryURLomdb,
+    method: "GET"
+    }).then(function(response3) {
+            console.log(response3)
+        // && response3.Rated === "R" if we want to filter by rating
+            if (response3.Poster) {
+            console.log(response3.Rated);
+            var poster = response3.Poster;
+            var imgEl = $("<img>");
+            imgEl.attr("src", poster).attr("alt",response3.Title).attr("width","200").attr("height","auto");
+            $(".randomMovie").append(imgEl);
+            } else {
+                var imgEl2 = $("<img>");
+                imgEl2.attr("src", "https://musicimage.xboxlive.com/catalog/video.movie.8D6KGWZXF09S/image?locale=en-us&mode=crop&purposes=BoxArt&q=90&h=300&w=200&format=jpg").attr("alt","Dumb and Dumber").attr("width","200").attr("height","auto");
+                $(".randomMovie").append(imgEl2);
+            }
+    
+    });
+}
+
+
+function generateRandomMovie() {
+    var queryURLomdb = "https://www.omdbapi.com/?t=" + movieChosen + "&apikey=trilogy";
+
+                     // Creates AJAX call for the specific movie button being clicked
+                    $.ajax({
+                    url: queryURLomdb,
+                    method: "GET"
+                    }).then(function(response3) {
+                        // && response3.Rated === "R" if we want to filter by rating
+                        if ((parseInt(response3.Ratings[1].Value) > ratingFloorRotten)) {
+                            console.log(response3.Rated);
+                            var poster = response3.Poster;
+                            var imgEl = $("<img>");
+                            imgEl.attr("src", poster).attr("alt",response3.Title).attr("width","200").attr("height","auto");
+                            $(".posters").append(imgEl);
+                        };
+                    });
+}
+
+
+
 function generateMovies(genreID) {
 
 // api key
