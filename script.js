@@ -33,29 +33,7 @@ function generateRandomMovie() {
     });
 }
 
-
-function generateRandomMovie() {
-    var queryURLomdb = "https://www.omdbapi.com/?t=" + movieChosen + "&apikey=trilogy";
-
-                     // Creates AJAX call for the specific movie button being clicked
-                    $.ajax({
-                    url: queryURLomdb,
-                    method: "GET"
-                    }).then(function(response3) {
-                        // && response3.Rated === "R" if we want to filter by rating
-                        if ((parseInt(response3.Ratings[1].Value) > ratingFloorRotten)) {
-                            console.log(response3.Rated);
-                            var poster = response3.Poster;
-                            var imgEl = $("<img>");
-                            imgEl.attr("src", poster).attr("alt",response3.Title).attr("width","200").attr("height","auto");
-                            $(".posters").append(imgEl);
-                        };
-                    });
-}
-
-
-
-function generateMovies(genreID) {
+function generateMovies(genreID, year) {
 
 // api key
 var apiKey = "&api_key=acb4c32a00f4cc5e0b30b2fb2f5a1adb";
@@ -70,8 +48,16 @@ function getRange(year) {
 
     return { start, end };
 }
-var chosenStart = getRange(2010).start;
-var chosenEnd = getRange(2010).end;
+
+// make sure we have year
+    if (year) {
+        year = year;
+    } else {
+        year = 2010;
+    }
+
+var chosenStart = getRange(year).start;
+var chosenEnd = getRange(year).end;
 console.log(chosenStart);
 var yearFilter = chosenStart + chosenEnd;
 
