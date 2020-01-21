@@ -8,42 +8,31 @@ var apiKey = "&api_key=acb4c32a00f4cc5e0b30b2fb2f5a1adb";
 // default query
 var defaultURL = "https://api.themoviedb.org/3/discover/movie?";
 
-// by year range
-var eighties = {
-    start: "primary_release_date.gte=1980-01-01",
-    end: "&primary_release_date.lte=1989-12-31"
-}
-var nineties = {
-    start: "primary_release_date.gte=1990-01-01",
-    end: "&primary_release_date.lte=1999-12-31"
-}
-var twoThousands = {
-    start: "primary_release_date.gte=2000-01-01",
-    end: "&primary_release_date.lte=2009-12-31"
-}
-var twentyTens = {
-    start: "primary_release_date.gte=2010-01-01",
-    end: "&primary_release_date.lte=2019-12-31"
-}
+// year filter
+function getRange(year) {
+    var start = "primary_release_date.gte=" + year + "-01-01";
+    var end = "&primary_release_date.lte=" + (year + 9) + "-12-31";
 
-var chosenDecade = twentyTens;
-var chosenStart = chosenDecade.start;
-var chosenEnd = chosenDecade.end;
-console.log(chosenStart); // returns 1980-01-01
+    return { start, end };
+}
+var chosenStart = getRange(2010).start;
+var chosenEnd = getRange(2010).end;
+console.log(chosenStart);
 var yearFilter = chosenStart + chosenEnd;
 
 // genre filter
 var genresList = genres;    
-var chosenGenreName = genresList[8].name;
-var chosenGenreID = genresList[8].id;
+var chosenGenreName = genresList[1].name;
+var chosenGenreID = genresList[1].id;
 
 var genreFilter = "&with_genres=" + chosenGenreID;
 
-// add ratings 
+// ratings filter 
 var ratingFloor = 7.0;
+var ratingFloorRotten = ratingFloor / 100;
 var ratingFilter = "&vote_average.gte=" + ratingFloor;
 
-// construct query
+// query constructor
 var queryURL = defaultURL + yearFilter + genreFilter + ratingFilter;
 console.log(queryURL);
 
@@ -62,6 +51,7 @@ $.ajax({
 
     var pages = response.total_pages
     var movieList = [];
+    // var movieListClean = [];
 
     for (let j = 0; j < pages; j++) {
         queryToRun = queryURL + "&sort_by=vote_average.desc" + "&page=" + (j + 1) + apiKey;
@@ -72,7 +62,7 @@ $.ajax({
           }).then(function(response2) {
 
             for (let i = 0; i < 20; i++) {
-                console.log(response2.results[i].title);
+                // console.log(response2.results[i].title);
                 if (response2.results[i].original_language === "en") {
                     var movie = response2.results[i].title;
                     movieList.push(movie);
@@ -86,22 +76,25 @@ $.ajax({
                     url: queryURLomdb,
                     method: "GET"
                     }).then(function(response3) {
-                        var poster = response3.Poster;
-                        var imgEl = $("<img>");
-                        imgEl.attr("src", poster).attr("alt",response3.Title);
-                        $(".posters").append(imgEl);
+                        if (parseInt(response3.Ratings[1].Value) > ratingFloorRotten) {
+                            console.log(response3.Ratings[1].Value);
+                            var poster = response3.Poster;
+                            var imgEl = $("<img>");
+                            imgEl.attr("src", poster).attr("alt",response3.Title).attr("width","200").attr("height","auto");
+                            $(".posters").append(imgEl);
+                        }
                     });
 
                 }
             }
-            console.log(movieList);
-            console.log(movieList.length);
+            // console.log(movieList);
+            // console.log(movieList.length);
             masterList = movieList;
         });
         
     };
-    console.log(masterList);
-    console.log(masterList.length);
+    // console.log(masterList);
+    // console.log(masterList.length);
   });
 
 
