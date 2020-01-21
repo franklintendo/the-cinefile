@@ -1,9 +1,13 @@
-.container-fluid{
-    height: 100vh;
-    margin: 5em;
+
+h1 {
+    font-size: 3em;
 }
-#footer {
-   margin: 5px;
-   padding:5px;
-   text-align: center;
+.content {
+    text-align: center;
+}
+.genre-choice-button:hover {
+    color: lightseagreen;    
+  }
+.is-horizontal-center{
+    justify-content: center;
 }

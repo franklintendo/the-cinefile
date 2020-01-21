@@ -7,6 +7,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+    <link rel="stylesheet" href="style.css">
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
 
     <title>The Cinefile</title>
@@ -16,11 +17,39 @@
 
 </head>
 <body>
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://bulma.io">
+        <img src="https://img.icons8.com/ios-filled/100/000000/movie.png">
+      </a>
+  
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+  </nav>
+
+  
+  <div class="card">
+    <header class="card-header">
+      <h1 class="card-header-title is-flex is-horizontal-center">Movie of the Day</h1>
+    </header>
+
+    <div class="card-content is-flex is-horizontal-center">
+      <img src="https://m.media-amazon.com/images/M/MV5BMzk0OTc3MDM5MF5BMl5BanBnXkFtZTgwOTMzMDMzMjE@._V1_SX300.jpg">
+  </div>
+  <div class="card-content">
+    <div class="content">
+      Details about movie: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
+      
+    </div>
+  </div>
+  </div>
 
     <div class="section container">
-        <div id="genre-buttons" class="columns is-centered is-mobile is-multiline">
-
-            
+        <div id="genre-buttons" class="columns is-centered is-mobile is-multiline">   
         </div>
         <div class="columns is centered">
             <div class="column">
@@ -30,6 +59,13 @@
     </div>
 
     <div class="posters"></div>
+    <footer class="footer">
+      <div class="content has-text-centered">
+        <p>
+          <strong>Footer</strong> 
+        </p>
+      </div>
+    </footer>
     
     <script src="genres.js"></script>
     <script src="script.js"></script>
