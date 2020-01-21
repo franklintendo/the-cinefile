@@ -9,29 +9,27 @@ var apiKey = "&api_key=acb4c32a00f4cc5e0b30b2fb2f5a1adb";
 var defaultURL = "https://api.themoviedb.org/3/discover/movie?";
 
 // year filter
-var start = "1980";
-var end = parseInt(start) + 9;
-
 function getRange(year) {
     var start = "primary_release_date.gte=" + year + "-01-01";
     var end = "&primary_release_date.lte=" + (year + 9) + "-12-31";
 
     return { start, end };
 }
-var chosenStart = getRange(1980).start;
-var chosenEnd = getRange(1980).end;
-console.log(chosenStart); // returns 1980-01-01
+var chosenStart = getRange(2010).start;
+var chosenEnd = getRange(2010).end;
+console.log(chosenStart);
 var yearFilter = chosenStart + chosenEnd;
 
 // genre filter
 var genresList = genres;    
-var chosenGenreName = genresList[3].name;
-var chosenGenreID = genresList[3].id;
+var chosenGenreName = genresList[1].name;
+var chosenGenreID = genresList[1].id;
 
 var genreFilter = "&with_genres=" + chosenGenreID;
 
 // ratings filter 
 var ratingFloor = 7.0;
+var ratingFloorRotten = ratingFloor / 100;
 var ratingFilter = "&vote_average.gte=" + ratingFloor;
 
 // query constructor
@@ -53,6 +51,7 @@ $.ajax({
 
     var pages = response.total_pages
     var movieList = [];
+    // var movieListClean = [];
 
     for (let j = 0; j < pages; j++) {
         queryToRun = queryURL + "&sort_by=vote_average.desc" + "&page=" + (j + 1) + apiKey;
@@ -63,7 +62,7 @@ $.ajax({
           }).then(function(response2) {
 
             for (let i = 0; i < 20; i++) {
-                console.log(response2.results[i].title);
+                // console.log(response2.results[i].title);
                 if (response2.results[i].original_language === "en") {
                     var movie = response2.results[i].title;
                     movieList.push(movie);
@@ -77,22 +76,25 @@ $.ajax({
                     url: queryURLomdb,
                     method: "GET"
                     }).then(function(response3) {
-                        var poster = response3.Poster;
-                        var imgEl = $("<img>");
-                        imgEl.attr("src", poster).attr("alt",response3.Title).attr("width","200").attr("height","auto");
-                        $(".posters").append(imgEl);
+                        if (parseInt(response3.Ratings[1].Value) > ratingFloorRotten) {
+                            console.log(response3.Ratings[1].Value);
+                            var poster = response3.Poster;
+                            var imgEl = $("<img>");
+                            imgEl.attr("src", poster).attr("alt",response3.Title).attr("width","200").attr("height","auto");
+                            $(".posters").append(imgEl);
+                        }
                     });
 
                 }
             }
-            console.log(movieList);
-            console.log(movieList.length);
+            // console.log(movieList);
+            // console.log(movieList.length);
             masterList = movieList;
         });
         
     };
-    console.log(masterList);
-    console.log(masterList.length);
+    // console.log(masterList);
+    // console.log(masterList.length);
   });
 
 
