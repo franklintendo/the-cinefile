@@ -1,13 +1,35 @@
 
 h1 {
     font-size: 3em;
+    font-family: 'Playfair Display SC', serif;
 }
 .content {
     text-align: center;
 }
+
+.genre-choice-button{
+    font-family: 'Playfair Display SC', serif;
+
+}
 .genre-choice-button:hover {
+    border-color: green;
     color: lightseagreen;    
+    font-family: 'Playfair Display SC', serif;
+
   }
 .is-horizontal-center{
     justify-content: center;
+}
+#submit-genre-button {
+    font-family: 'Playfair Display SC', serif;
+}
+#submit-genre-button:hover {
+    border-color: gold;
+    color: lightseagreen;    
+    font-family: 'Playfair Display SC', serif;
+}
+
+footer {
+    font-family: 'Playfair Display SC', serif;
+
 }
