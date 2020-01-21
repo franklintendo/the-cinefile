@@ -8,42 +8,33 @@ var apiKey = "&api_key=acb4c32a00f4cc5e0b30b2fb2f5a1adb";
 // default query
 var defaultURL = "https://api.themoviedb.org/3/discover/movie?";
 
-// by year range
-var eighties = {
-    start: "primary_release_date.gte=1980-01-01",
-    end: "&primary_release_date.lte=1989-12-31"
-}
-var nineties = {
-    start: "primary_release_date.gte=1990-01-01",
-    end: "&primary_release_date.lte=1999-12-31"
-}
-var twoThousands = {
-    start: "primary_release_date.gte=2000-01-01",
-    end: "&primary_release_date.lte=2009-12-31"
-}
-var twentyTens = {
-    start: "primary_release_date.gte=2010-01-01",
-    end: "&primary_release_date.lte=2019-12-31"
-}
+// year filter
+var start = "1980";
+var end = parseInt(start) + 9;
 
-var chosenDecade = twentyTens;
-var chosenStart = chosenDecade.start;
-var chosenEnd = chosenDecade.end;
+function getRange(year) {
+    var start = "primary_release_date.gte=" + year + "-01-01";
+    var end = "&primary_release_date.lte=" + (year + 9) + "-12-31";
+
+    return { start, end };
+}
+var chosenStart = getRange(1980).start;
+var chosenEnd = getRange(1980).end;
 console.log(chosenStart); // returns 1980-01-01
 var yearFilter = chosenStart + chosenEnd;
 
 // genre filter
 var genresList = genres;    
-var chosenGenreName = genresList[8].name;
-var chosenGenreID = genresList[8].id;
+var chosenGenreName = genresList[3].name;
+var chosenGenreID = genresList[3].id;
 
 var genreFilter = "&with_genres=" + chosenGenreID;
 
-// add ratings 
+// ratings filter 
 var ratingFloor = 7.0;
 var ratingFilter = "&vote_average.gte=" + ratingFloor;
 
-// construct query
+// query constructor
 var queryURL = defaultURL + yearFilter + genreFilter + ratingFilter;
 console.log(queryURL);
 
@@ -88,7 +79,7 @@ $.ajax({
                     }).then(function(response3) {
                         var poster = response3.Poster;
                         var imgEl = $("<img>");
-                        imgEl.attr("src", poster).attr("alt",response3.Title);
+                        imgEl.attr("src", poster).attr("alt",response3.Title).attr("width","200").attr("height","auto");
                         $(".posters").append(imgEl);
                     });
 
