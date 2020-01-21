@@ -10,6 +10,10 @@
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
 
     <title>Buttons</title>
+    <style>
+
+    </style>
+
 </head>
 <body>
 
@@ -23,8 +27,13 @@
 
             
         </div>
+        <div class="columns is centered">
+            <div class="column">
+                    <button id="submit-genre-button" class="button is-large is-fullwidth">Submit</button>
+            </div>
+        </div>
     </div>
-    <div class="section container">  
+    <!-- <div class="section container">  
         <div id="decade-buttons" class="columns is-centered is-mobile is-multiline">
             <div class="column is-narrow">
             <button class="button is-large">
@@ -62,35 +71,40 @@
                 </button>
             </div>
         </div>
-    </div>
+    </div> -->
     
     <script src="../genres.js"></script>
     <!-- <script src="../script.js"></script> -->
     <script>
-        var giphyAPI = "kbJRV3uOjQiGAxkp23Ydu7UChczQvAg4";
-        var giphyURL = "https://api.giphy.com/v1/gifs/search?q=thriller+movie&rating=pg&api_key=" + giphyAPI;
-
-        var imgurURL = "https://api.imgur.com/3/"
-
-        $.ajax({
-            url: giphyURL,
-            method: "GET"
-        }).then(function(response) {
-            console.log(response)
-        });
+        var userGenreName = "";
+        var userGenreId = "";
 
 
 
         for (var i=0;i < genres.length;i++) {
             var column = $('<div class="column is-narrow">');
-            var button = $('<button class="button is-large">');
+            var button = $('<button class="button is-large genre-choice-button">');
+            
             column.append(button);
             button.text(genres[i].name);
+            button.attr("data-genre", genres[i].name);
+            button.attr("data-id", genres[i].id);
             $('#genre-buttons').append(column);
         }
 
-        $('.button').on("click", function(){
+        $('.genre-choice-button').on("click", function(){
+            userGenreName = $(this).data("genre");
+            userGenreId = $(this).data("id");
+            $('.genre-choice-button').removeClass('genre-chosen');
+            $(this).addClass('genre-chosen');
+            
+        });
+        $('#submit-genre-button').on("click", function(){
+            // alert(userGenre);
 
+            $('.genre-choice-button').attr("style", "display: none;");
+            $('.genre-chosen').attr('style','display: block;');
+            $('.genre-chosen').addClass('is-large');
         });
     </script>
 </body>
