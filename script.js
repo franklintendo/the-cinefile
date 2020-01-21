@@ -2,7 +2,6 @@
 // this query works (use to debug)
 // https://api.themoviedb.org/3/discover/movie?primary_release_date.gte=2014-09-15&primary_release_date.lte=2014-10-22&api_key=acb4c32a00f4cc5e0b30b2fb2f5a1adb
 
-
 function generateMovies(genreID) {
 
 // api key
@@ -79,17 +78,18 @@ $.ajax({
                     url: queryURLomdb,
                     method: "GET"
                     }).then(function(response3) {
-                        if (parseInt(response3.Ratings[1].Value) > ratingFloorRotten) {
-                            console.log(response3.Ratings[1].Value);
+                        // && response3.Rated === "R" if we want to filter by rating
+                        if ((parseInt(response3.Ratings[1].Value) > ratingFloorRotten)) {
+                            console.log(response3.Rated);
                             var poster = response3.Poster;
                             var imgEl = $("<img>");
                             imgEl.attr("src", poster).attr("alt",response3.Title).attr("width","200").attr("height","auto");
                             $(".posters").append(imgEl);
-                        }
+                        };
                     });
 
-                }
-            }
+                };
+            };
             // console.log(movieList);
             // console.log(movieList.length);
             masterList = movieList;
