@@ -27,8 +27,6 @@ var userGenreId = "";
                 // and the submit buttons
                 selectGenreChoice(this);
             }
-            
-            
         });
 
         // When the user clicks on the submit button after selecting
@@ -39,13 +37,29 @@ var userGenreId = "";
 
                 var genreID = userGenreId;
                 // Hide all of the other genre choices
-                $('.genre-choice-button').attr("style", "display: none;");
+                // $('.genre-choice-button').attr("style", "display: none;");
+                // $('.genre-choice-button').removeClass("is-inline-flex");
+                // $('.genre-choice-button').addClass("is-hidden");
+                $('.genre-choice-button').parent().removeClass("is-inline-flex");
+                $('.genre-choice-button').parent().addClass("is-hidden");
+
+
                 // Hide the submit button since the user already submitted their genre selection
-                $(this).attr("style", "display: none");
+                // $(this).attr("style", "display: none");
+                $(this).addClass("is-hidden");
+
                 // Only display the button with the genre the user chose
-                $('.genre-chosen').attr('style','display: inline-flex;');
+                // $('.genre-chosen').attr('style','display: inline-flex;');
+                // $('.genre-chosen').removeClass("is-hidden");
+                // $('.genre-chosen').addClass("is-inline-flex");
+                $('.genre-chosen').parent().removeClass("is-hidden");
+                $('.genre-chosen').parent().addClass("is-inline-flex");
+
                 // Feed the user's selected genre into the movie API
                 generateMovies(genreID);
+
+                // Show the year and movie rating buttons
+                $('#extra-buttons').removeClass('is-hidden');
             }
         });
 
@@ -74,7 +88,14 @@ var userGenreId = "";
             // since the user is deselecting their choice
             $('.genre-choice-button').removeClass('genre-chosen');
             // Show all options again
-            $('.genre-choice-button').attr("style", "display: inline-flex;");
+            // $('.genre-choice-button').attr("style", "display: inline-flex;");
+            // $('.genre-choice-button').removeClass('is-hidden');
+            // $('.genre-choice-button').addClass('is-inline-flex');
+            $('.genre-choice-button').parent().removeClass("is-hidden");
+            $('.genre-choice-button').parent().addClass("is-inline-flex");
             // Show submit button again
-            $('#submit-genre-button').attr("style", "display: inline-flex;");
+            // $('#submit-genre-button').attr("style", "display: inline-flex;");
+            $('#submit-genre-button').removeClass('is-hidden');
+            $('#submit-genre-button').addClass('is-inline-flex');
+
         }
