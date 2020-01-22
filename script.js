@@ -33,7 +33,7 @@ function generateRandomMovie() {
     });
 }
 
-function generateMovies(genreID, year) {
+function generateMovies(genreID, year, rating) {
 
 // api key
 var apiKey = "&api_key=acb4c32a00f4cc5e0b30b2fb2f5a1adb";
@@ -62,13 +62,21 @@ console.log(chosenStart);
 var yearFilter = chosenStart + chosenEnd;
 
 // genre filter
-var genresList = genres;    
-var chosenGenreName = genresList[1].name;
+// var genresList = genres;    
+// var chosenGenreName = genresList[1].name;
 var chosenGenreID = genreID;
 
 var genreFilter = "&with_genres=" + chosenGenreID;
 
-// ratings filter 
+// movie rating
+var movieRating =  rating;
+if (movieRating) {
+    movieRating = movieRating;
+} else {
+    movieRating = "R";
+}
+
+// rotten tomatoes ratings filter 
 var ratingFloor = 7.0;
 var ratingFloorRotten = ratingFloor / 100;
 var ratingFilter = "&vote_average.gte=" + ratingFloor;
@@ -117,13 +125,14 @@ $.ajax({
                     url: queryURLomdb,
                     method: "GET"
                     }).then(function(response3) {
-                        // && response3.Rated === "R" if we want to filter by rating
-                        if ((parseInt(response3.Ratings[1].Value) > ratingFloorRotten)) {
-                            console.log(response3.Rated);
-                            var poster = response3.Poster;
-                            var imgEl = $("<img>");
-                            imgEl.attr("src", poster).attr("alt",response3.Title).attr("width","200").attr("height","auto");
-                            $(".posters").append(imgEl);
+                        if ((parseInt(response3.Ratings[1].Value) > ratingFloorRotten) && response3.Rated === movieRating) {
+                            
+                            
+                                console.log(response3.Rated);
+                                var poster = response3.Poster;
+                                var imgEl = $("<img>");
+                                imgEl.attr("src", poster).attr("alt",response3.Title).attr("width","200").attr("height","auto");
+                                $(".posters").append(imgEl);
                         };
                     });
 
