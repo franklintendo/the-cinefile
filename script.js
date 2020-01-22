@@ -83,11 +83,11 @@ var ratingFilter = "&vote_average.gte=" + ratingFloor;
 
 // query constructor
 var queryURL = defaultURL + yearFilter + genreFilter + ratingFilter;
-console.log(queryURL);
+// console.log(queryURL);
 
 // filter by english language movies
 var cleanQuery = queryURL + "&sort_by=vote_average.desc" + "&language=en" + apiKey;
-console.log(cleanQuery);
+// console.log(cleanQuery);
 
 // get a list of movies;
 var masterList = [];
@@ -130,17 +130,38 @@ $.ajax({
                     method: "GET"
                     }).then(function(response3) {
                         if ((parseInt(response3.Ratings[1].Value) > ratingFloorRotten) && response3.Rated === movieRating && movieCount < numberOfMovies) {
-
+                                console.log(response3);
                                 movieCount++;
                                 var movieToAdd = response3.Title;
                                 masterList.push(movieToAdd);
-                                console.log(masterList);
+                                // console.log(masterList);
 
-                                console.log(response3.Rated);
+                                // console.log(response3.Rated);
+                                var columnsContainer = $('<div class="columns poster-col">');
+
+                                var columnImg = $('<div class="column is-narrow">');
+
+                                var columnContent = $('<div class="column">');
+
+                                columnContent.html("<h1>" + response3.Title + "</h1>" + "<p><span style='font-weight: bold'>Director:</span> " + response3.Director + "</p>" +
+                                "<p><span style='font-weight: bold'>Year:</span> " + response3.Year + "</p><br/>" +
+                                "<p><span style='font-weight: bold'>Plot:</span> " + response3.Plot + "</p>"
+                                );
+
+                                $(".posters").append(columnsContainer);
+
                                 var poster = response3.Poster;
                                 var imgEl = $("<img>");
-                                imgEl.attr("src", poster).attr("alt",response3.Title).attr("width","200").attr("height","auto");
-                                $(".posters").append(imgEl);
+                                imgEl.attr("src", poster).attr("alt",response3.Title).attr("width","200").attr("height","auto").attr("style", "width: 200px!important;");
+
+                                columnsContainer.append(columnImg);
+                                columnsContainer.append(columnContent);
+
+                                columnImg.append(imgEl);
+                                
+
+                                // $(".posters").append(imgEl);
+                                // $(".posters").append("<br>");
                         };
                     });
 

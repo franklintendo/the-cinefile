@@ -57,9 +57,9 @@ $('#submit-genre-button').on("click", function(){
 
         // Show the year and movie rating buttons
         $('#extra-buttons').removeClass('is-hidden');
-        console.log("Decade clicked: " + decadeChosen);
-        console.log("Genre ID selected: " + genreChosen);
-        console.log("Rating clicked: " + movieRatingChosen);
+        // console.log("Decade clicked: " + decadeChosen);
+        // console.log("Genre ID selected: " + genreChosen);
+        // console.log("Rating clicked: " + movieRatingChosen);
         $('#filter-sidebar').removeClass('is-12'); 
         $('#filter-sidebar').addClass('is-4'); 
         $('.posters').removeClass('is-hidden');
@@ -80,11 +80,11 @@ $('#submit-genre-button').on("click", function(){
     $(this).addClass("year-button-selected");
     generateMovies(genreChosen, decadeChosen, movieRatingChosen);
     
-    console.log("Decade clicked: " + decadeChosen);
-    console.log("Genre ID selected: " + genreChosen);
-    console.log("Rating clicked: " + movieRatingChosen);
+    // console.log("Decade clicked: " + decadeChosen);
+    // console.log("Genre ID selected: " + genreChosen);
+    // console.log("Rating clicked: " + movieRatingChosen);
 
-    console.log("_______________");
+    // console.log("_______________");
 });
 
 // adding functionality to the movie rating buttons
@@ -101,11 +101,11 @@ $('.movie-rating-button').on('click', function() {
     movieRatingChosen = $(this).data("rating");
     generateMovies(genreChosen, decadeChosen, movieRatingChosen);
 
-    console.log("Decade clicked: " + decadeChosen);
-    console.log("Genre ID selected: " + genreChosen);
-    console.log("Rating clicked: " + movieRatingChosen);
+    // console.log("Decade clicked: " + decadeChosen);
+    // console.log("Genre ID selected: " + genreChosen);
+    // console.log("Rating clicked: " + movieRatingChosen);
 
-    console.log("_______________");
+    // console.log("_______________");
 });
 
 
