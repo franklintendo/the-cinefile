@@ -24,17 +24,15 @@ function generateRandomMovie() {
             var imgEl = $("<img>");
             imgEl.attr("src", poster).attr("alt",response3.Title);
             $(imgEl).addClass("posters");
-            console.log(imgEl)
-
-            $(".randomMovie").append(imgEl);
+            $(".swiper-slide").append(imgEl);
             } else {
                 var imgEl2 = $("<img>");
                 imgEl2.attr("src", "http://www.impawards.com/2014/posters/dumb_and_dumber_to_ver8.jpg").attr("alt","Dumb and Dumber").attr("width","100%").attr("height","auto");
-            
-                $(".randomMovie").append(imgEl2);
+                $(".swiper-slide").append(imgEl2);
             }
+
+});
     
-    });
 var images = document.querySelectorAll('img');
 var errorHandler = function() {
   this.style.display='none';
