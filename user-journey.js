@@ -169,7 +169,7 @@ function removeGenreChoice() {
     $('.posters').html("");
     // Remove the genre chosen class from all the genre buttons
     // since the user is deselecting their choice
-    $('.genre-choice-button').parent().removeClass('genre-chosen');
+    $('.genre-choice-button').removeClass('genre-chosen');
     // $('.genre-choice-button').removeClass('is-12');
     // $('.genre-choice-button').removeClass('is-3');
     // $('.genre-choice-button').addClass('is-3');
