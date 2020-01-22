@@ -135,7 +135,6 @@ $.ajax({
                                 var movieToAdd = response3.Title;
                                 masterList.push(movieToAdd);
                                 // console.log(masterList);
-
                                 // console.log(response3.Rated);
                                 var columnsContainer = $('<div class="columns poster-col">');
 

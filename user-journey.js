@@ -63,6 +63,9 @@ $('#submit-genre-button').on("click", function(){
         $('#filter-sidebar').removeClass('is-12'); 
         $('#filter-sidebar').addClass('is-4'); 
         $('.posters').removeClass('is-hidden');
+        var loadingDiv = $("<div class='poster-loading button is-loading is-full-width'>");
+        loadingDiv.text("loading...");
+        $(".posters").append(loadingDiv);
     }
 });
 
@@ -76,8 +79,15 @@ $('#submit-genre-button').on("click", function(){
     // $('.year-button').removeClass("year-button-selected");
     $('.year-button').removeClass("year-button-selected");
     $('.posters').empty();
+    var loadingDiv = $("<div class='poster-loading button is-loading is-full-width'>");
+    loadingDiv.text("loading...");
+    $(".posters").append(loadingDiv);
     decadeChosen = $(this).data("decade");
-    $(this).addClass("year-button-selected");
+    if ($(this).hasClass("year-button-selected")) {
+        $(this).removeClass("year-button-selected");
+    } else {
+        $(this).addClass("year-button-selected");
+    }
     generateMovies(genreChosen, decadeChosen, movieRatingChosen);
     
     // console.log("Decade clicked: " + decadeChosen);
@@ -97,7 +107,14 @@ $('.movie-rating-button').on('click', function() {
     
     $('.movie-rating-button').removeClass("rating-button-selected");
     $('.posters').empty();
-    $(this).addClass("rating-button-selected");
+    var loadingDiv = $("<div class='poster-loading button is-loading is-full-width'>");
+    loadingDiv.text("loading...");
+    $(".posters").append(loadingDiv);
+    if ($(this).hasClass("rating-button-selected")) {
+        $(this).removeClass("rating-button-selected");
+    } else {
+        $(this).addClass("rating-button-selected");
+    }
     movieRatingChosen = $(this).data("rating");
     generateMovies(genreChosen, decadeChosen, movieRatingChosen);
 
