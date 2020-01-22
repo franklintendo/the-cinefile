@@ -71,6 +71,7 @@ var chosenStart = getRange(year).start;
 var chosenEnd = getRange(year).end;
 // console.log(chosenStart);
 var yearFilter = chosenStart + chosenEnd;
+var endYear = year + 9;
 
 // genre filter
 // var genresList = genres;    
@@ -141,7 +142,8 @@ $.ajax({
                     method: "GET"
                     }).then(function(response3) {
 
-                        if ((parseInt(response3.Ratings[1].Value) > ratingFloorRotten) && response3.Rated === movieRating && movieCount < numberOfMovies) {
+                        if ((parseInt(response3.Ratings[1].Value) > ratingFloorRotten) && (response3.Rated === movieRating) && (movieCount < numberOfMovies) && (response3.Year >= year && response3.Year <= endYear)) {
+
                                 console.log(response3);
                                 movieCount++;
                                 var movieToAdd = response3.Title;
@@ -163,7 +165,7 @@ $.ajax({
 
                                 var poster = response3.Poster;
                                 var imgEl = $("<img>");
-                                imgEl.attr("src", poster).attr("alt",response3.Title).attr("width","200").attr("height","auto").attr("style", "width: 200px!important;");
+                                imgEl.attr("src", poster).attr("alt",response3.Title).attr("width","200").attr("height","auto").attr("style", "width: 200px!important;").attr("onError","this.onerror=null;this.src=https://musicimage.xboxlive.com/catalog/video.movie.8D6KGWZXF09S/image?locale=en-us&mode=crop&purposes=BoxArt&q=90&h=300&w=200&format=jpg;");
 
                                 columnsContainer.append(columnImg);
                                 columnsContainer.append(columnContent);
