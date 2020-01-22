@@ -22,18 +22,26 @@ function generateRandomMovie() {
             // console.log(response3.Rated);
             var poster = response3.Poster;
             var imgEl = $("<img>");
-            imgEl.attr("src", poster).attr("alt",response3.Title).attr("width", "200").attr("height", "auto");
+            imgEl.attr("src", poster).attr("alt",response3.Title);
             $(imgEl).addClass("posters");
             console.log(imgEl)
 
             $(".randomMovie").append(imgEl);
             } else {
                 var imgEl2 = $("<img>");
-                imgEl2.attr("src", "https://musicimage.xboxlive.com/catalog/video.movie.8D6KGWZXF09S/image?locale=en-us&mode=crop&purposes=BoxArt&q=90&h=300&w=200&format=jpg").attr("alt","Dumb and Dumber").attr("width","200").attr("height","auto");
+                imgEl2.attr("src", "http://www.impawards.com/2014/posters/dumb_and_dumber_to_ver8.jpg").attr("alt","Dumb and Dumber").attr("width","100%").attr("height","auto");
+            
                 $(".randomMovie").append(imgEl2);
             }
     
     });
+var images = document.querySelectorAll('img');
+var errorHandler = function() {
+  this.style.display='none';
+}
+for (var i = 0; i < images.length; i++) {
+  images[i].onerror = errorHandler
+}
 }
 
 function generateMovies(genreID, year, rating) {
@@ -200,5 +208,17 @@ $.ajax({
 
 
 };
+
+$(document).ready(function() {
+
+    // Check for click events on the navbar burger icon
+    $(".navbar-burger").click(function() {
+    
+        // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+        $(".navbar-burger").toggleClass("is-active collapsed");
+        $(".navbar-menu").toggleClass("is-active collapsed");
+    
+    });
+    });
 
   
