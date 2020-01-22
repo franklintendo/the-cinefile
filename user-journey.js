@@ -82,11 +82,13 @@ $('#submit-genre-button').on("click", function(){
     var loadingDiv = $("<div class='poster-loading button is-loading is-full-width'>");
     loadingDiv.text("loading...");
     $(".posters").append(loadingDiv);
-    decadeChosen = $(this).data("decade");
-    if ($(this).hasClass("year-button-selected")) {
+    
+    if (decadeChosen === $(this).data("decade")) {
         $(this).removeClass("year-button-selected");
+        decadeChosen = "";
     } else {
         $(this).addClass("year-button-selected");
+        decadeChosen = $(this).data("decade");
     }
     generateMovies(genreChosen, decadeChosen, movieRatingChosen);
     
@@ -110,12 +112,15 @@ $('.movie-rating-button').on('click', function() {
     var loadingDiv = $("<div class='poster-loading button is-loading is-full-width'>");
     loadingDiv.text("loading...");
     $(".posters").append(loadingDiv);
-    if ($(this).hasClass("rating-button-selected")) {
+    if (movieRatingChosen === $(this).data("rating")) {
         $(this).removeClass("rating-button-selected");
+        movieRatingChosen = "";
     } else {
         $(this).addClass("rating-button-selected");
+        movieRatingChosen = $(this).data("rating");
     }
-    movieRatingChosen = $(this).data("rating");
+
+    
     generateMovies(genreChosen, decadeChosen, movieRatingChosen);
 
     // console.log("Decade clicked: " + decadeChosen);
