@@ -165,7 +165,10 @@ $.ajax({
 
                                 var poster = response3.Poster;
                                 var imgEl = $("<img>");
-                                imgEl.attr("src", poster).attr("alt",response3.Title).attr("width","200").attr("height","auto").attr("style", "width: 200px!important;").attr("onError","this.onerror=null;this.src=https://musicimage.xboxlive.com/catalog/video.movie.8D6KGWZXF09S/image?locale=en-us&mode=crop&purposes=BoxArt&q=90&h=300&w=200&format=jpg;");
+
+                                // imgEl.attr("src", poster).attr("alt",response3.Title).attr("width","200").attr("height","auto").attr("style", "width: 200px!important;").attr("onError","this.onerror=null;this.src=https://musicimage.xboxlive.com/catalog/video.movie.8D6KGWZXF09S/image?locale=en-us&mode=crop&purposes=BoxArt&q=90&h=300&w=200&format=jpg;");
+
+                                imgEl.attr("src", poster).attr("alt",response3.Title).attr("width","200").attr("height","auto").attr("style", "width: 200px!important;").attr("class", "poster-img");
 
                                 columnsContainer.append(columnImg);
                                 columnsContainer.append(columnContent);
