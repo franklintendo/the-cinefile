@@ -1,4 +1,23 @@
 
+header {
+    display: inline-block;
+
+}
+#randMovie {
+    box-shadow: 0em 0.5em 0.2em -0.125em rgba(10,10,10,.1), 0 0 0 1px rgba(10,10,10,.02);
+}
+.posters {
+    width: 100%;
+    float: left;
+}
+.navbar-burger{
+    margin-left: 0;
+    
+}
+
+a.navbar-item:hover {
+    color: #800000
+}
 h1 {
     font-size: 2em;
     font-family: 'Playfair Display SC', serif;
@@ -82,4 +101,14 @@ footer {
 
 .poster-col {
     border-bottom: 1px solid #e1e1e1;
+    z-index: 100;
+    position: relative;
+    background-color: #FFFFFF;
+}
+
+.poster-loading {
+    font-size: 120px;
+    border: none;
+    position: absolute;
+    z-index: 1;
 }
