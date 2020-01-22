@@ -4,10 +4,10 @@
 
 function generateRandomMovie() {
     var movieLength = movies.length;
-    console.log(movieLength);
+    // console.log(movieLength);
 
     var movie = movies[Math.floor(Math.random() * movieLength)].entity;
-    console.log(movie);
+    // console.log(movie);
     
     var queryURLomdb = "https://www.omdbapi.com/?t=" + movie + "&apikey=trilogy";
 
@@ -16,10 +16,10 @@ function generateRandomMovie() {
     url: queryURLomdb,
     method: "GET"
     }).then(function(response3) {
-            console.log(response3)
+            // console.log(response3)
         // && response3.Rated === "R" if we want to filter by rating
             if (response3.Poster) {
-            console.log(response3.Rated);
+            // console.log(response3.Rated);
             var poster = response3.Poster;
             var imgEl = $("<img>");
             imgEl.attr("src", poster).attr("alt",response3.Title).attr("width","200").attr("height","auto");
@@ -58,7 +58,7 @@ function getRange(year) {
 
 var chosenStart = getRange(year).start;
 var chosenEnd = getRange(year).end;
-console.log(chosenStart);
+// console.log(chosenStart);
 var yearFilter = chosenStart + chosenEnd;
 
 // genre filter
@@ -91,20 +91,24 @@ console.log(cleanQuery);
 
 // get a list of movies;
 var masterList = [];
+var numberOfMovies = 10;
+var movieCount = 0;
 
 $.ajax({
     url: cleanQuery,
     method: "GET"
   }).then(function(response) {
-    console.log(response);
+    // console.log(response);
 
     var pages = response.total_pages
+    var randomPage = Math.floor(Math.random() * pages);
+    // console.log(randomPage);
     var movieList = [];
     // var movieListClean = [];
 
     for (let j = 0; j < pages; j++) {
         queryToRun = queryURL + "&sort_by=vote_average.desc" + "&page=" + (j + 1) + apiKey;
-        console.log(queryToRun);
+        // console.log(queryToRun);
         $.ajax({
             url: queryToRun,
             method: "GET"
@@ -114,20 +118,24 @@ $.ajax({
                 // console.log(response2.results[i].title);
                 if (response2.results[i].original_language === "en") {
                     var movie = response2.results[i].title;
-                    movieList.push(movie);
 
                     var movieChosen = movie.trim();
                     movieChosen = movieChosen.replace(" ","+")
                     var queryURLomdb = "https://www.omdbapi.com/?t=" + movieChosen + "&apikey=trilogy";
+
 
                      // Creates AJAX call for the specific movie button being clicked
                     $.ajax({
                     url: queryURLomdb,
                     method: "GET"
                     }).then(function(response3) {
-                        if ((parseInt(response3.Ratings[1].Value) > ratingFloorRotten) && response3.Rated === movieRating) {
-                            
-                            
+                        if ((parseInt(response3.Ratings[1].Value) > ratingFloorRotten) && response3.Rated === movieRating && movieCount < numberOfMovies) {
+
+                                movieCount++;
+                                var movieToAdd = response3.Title;
+                                masterList.push(movieToAdd);
+                                console.log(masterList);
+
                                 console.log(response3.Rated);
                                 var poster = response3.Poster;
                                 var imgEl = $("<img>");
@@ -140,13 +148,31 @@ $.ajax({
             };
             // console.log(movieList);
             // console.log(movieList.length);
-            masterList = movieList;
+            // masterList = movieList;
         });
         
     };
     // console.log(masterList);
     // console.log(masterList.length);
-  });
+
+    // generate 10 random movies from the master list
+    // console.log(masterList);
+    // var numberOfMovies = 10;
+    // var randomFloor = 0;
+    // var randomCeiling = 0;
+    // if (masterList.length < 10) {
+    //     randomFloor = 0;
+    //     randomCeiling = masterList.length;
+    // } else {
+    //     randomFloor = Math.floor(Math.random() * (masterList.length - numberOfMovies));
+    //     randomCeiling = randomFloor + 9;
+    // }
+
+    // console.log(randomFloor);
+    // console.log(randomCeiling);
+
+});
+
 
 };
 
