@@ -32,10 +32,10 @@ var genres = [
     "id": 10751,
     "name": "Family" // 7
     },
-    {
-    "id": 14,
-    "name": "Fantasy" // 8
-    },
+    // {
+    // "id": 14,
+    // "name": "Fantasy" // 8
+    // },
     {
     "id": 36,
     "name": "History" // 9
@@ -44,10 +44,10 @@ var genres = [
     "id": 27,
     "name": "Horror" // 10
     },
-    {
-    "id": 10402,
-    "name": "Music" // 11
-    },
+    // {
+    // "id": 10402,
+    // "name": "Music" // 11
+    // },
     {
     "id": 9648,
     "name": "Mystery" // 12
@@ -60,10 +60,10 @@ var genres = [
     "id": 878,
     "name": "Science Fiction" // 14
     },
-    {
-    "id": 10770,
-    "name": "TV Movie" // 15
-    },
+    // {
+    // "id": 10770,
+    // "name": "TV Movie" // 15
+    // },
     {
     "id": 53,
     "name": "Thriller" // 16
