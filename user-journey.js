@@ -52,7 +52,7 @@ $('#submit-genre-button').on("click", function(){
         $('.genre-chosen').parent().addClass("is-inline-flex");
 
         // Feed the user's selected genre into the movie API
-        // generateMovies(genreChosen);
+        generateMovies(genreChosen);
 
         // Show the year and movie rating buttons
         $('#extra-buttons').removeClass('is-hidden');
@@ -118,7 +118,6 @@ $('#submit-genre-button').on("click", function(){
         console.log("Rating clicked: " + movieRatingChosen);
         // generateMovies(genreChosen, decadeChosen);
     }
-    // generateMovies(genreChosen, decadeChosen);
     console.log("_______________");
 });
 
