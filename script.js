@@ -22,7 +22,10 @@ function generateRandomMovie() {
             // console.log(response3.Rated);
             var poster = response3.Poster;
             var imgEl = $("<img>");
-            imgEl.attr("src", poster).attr("alt",response3.Title).attr("width","200").attr("height","auto");
+            imgEl.attr("src", poster).attr("alt",response3.Title).attr("width", "200").attr("height", "auto");
+            $(imgEl).addClass("posters");
+            console.log(imgEl)
+
             $(".randomMovie").append(imgEl);
             } else {
                 var imgEl2 = $("<img>");
@@ -129,6 +132,7 @@ $.ajax({
                     url: queryURLomdb,
                     method: "GET"
                     }).then(function(response3) {
+
                         if ((parseInt(response3.Ratings[1].Value) > ratingFloorRotten) && response3.Rated === movieRating && movieCount < numberOfMovies) {
                                 console.log(response3);
                                 movieCount++;
@@ -161,6 +165,7 @@ $.ajax({
 
                                 // $(".posters").append(imgEl);
                                 // $(".posters").append("<br>");
+
                         };
                     });
 
