@@ -73,54 +73,17 @@ $('#submit-genre-button').on("click", function(){
 
     // Strip all of the buttons of the selected class
     // and only apply according to the conditions in the if statement below
+    // $('.year-button').removeClass("year-button-selected");
     $('.year-button').removeClass("year-button-selected");
+    $('.posters').empty();
+    decadeChosen = $(this).data("decade");
+    $(this).addClass("year-button-selected");
+    generateMovies(genreChosen, decadeChosen, movieRatingChosen);
     
-    
-    if (movieRatingChosen && decadeChosen === "") {
-        // If there is a movie rating already selected
-        // and there isn't a decade selected yet, then run the generateMovies function with
-        // all three parameters applied (genre, decade, and movie rating)
-        decadeChosen = $(this).data("decade");
-        $(this).addClass("year-button-selected");
+    console.log("Decade clicked: " + decadeChosen);
+    console.log("Genre ID selected: " + genreChosen);
+    console.log("Rating clicked: " + movieRatingChosen);
 
-        console.log("Decade clicked: " + decadeChosen);
-        console.log("Genre ID selected: " + genreChosen);
-        console.log("Rating clicked: " + movieRatingChosen);
-        // generateMovies(genreChosen, decadeChosen, movieRatingChosen);
-    } else if(movieRatingChosen && decadeChosen === $(this).data("decade")) {
-        // If there is a movie rating already selected
-        // and the user clicks on the same decade button, then 
-        // deselect the decade and run the generateMovies function with
-        // only two parameters applied (genre and movie rating)
-        decadeChosen = "";
-        $(this).removeClass("year-button-selected");
-        console.log("Decade clicked: " + decadeChosen);
-        console.log("Genre ID selected: " + genreChosen);
-        console.log("Rating clicked: " + movieRatingChosen);
-        // generateMovies(genreChosen, movieRatingChosen);
-    } else if(movieRatingChosen === "" && decadeChosen === $(this).data("decade")) {
-        // If there isn't a movie rating selected
-        // and the user clicks on the same decade button, then 
-        // deselect the decade and run the generateMovies function with
-        // only one parameter applied (genre)
-        decadeChosen = "";
-        $(this).removeClass("year-button-selected");
-        console.log("Decade clicked: " + decadeChosen);
-        console.log("Genre ID selected: " + genreChosen);
-        console.log("Rating clicked: " + movieRatingChosen);
-        // generateMovies(genreChosen);
-    } else {
-        // If there isn't a movie rating selected and
-        // the user clicks on another decade button
-        // then run the generateMovies function with
-        // only two parameters applied (genre and decade)
-        decadeChosen = $(this).data("decade");
-        $(this).addClass("year-button-selected");
-        console.log("Decade clicked: " + decadeChosen);
-        console.log("Genre ID selected: " + genreChosen);
-        console.log("Rating clicked: " + movieRatingChosen);
-        // generateMovies(genreChosen, decadeChosen);
-    }
     console.log("_______________");
 });
 
@@ -133,51 +96,15 @@ $('.movie-rating-button').on('click', function() {
     var genreChosen = userGenreId;
     
     $('.movie-rating-button').removeClass("rating-button-selected");
-    
+    $('.posters').empty();
+    $(this).addClass("rating-button-selected");
+    movieRatingChosen = $(this).data("rating");
+    generateMovies(genreChosen, decadeChosen, movieRatingChosen);
 
-    // If there is a decade selected
-    // then run the generateMovies function with
-    // all three parameters applied (genre, decade, and movie rating)
-    if (decadeChosen && movieRatingChosen === "") {
-        $(this).addClass("rating-button-selected");
-        movieRatingChosen = $(this).data("rating");
+    console.log("Decade clicked: " + decadeChosen);
+    console.log("Genre ID selected: " + genreChosen);
+    console.log("Rating clicked: " + movieRatingChosen);
 
-        console.log("Decade clicked: " + decadeChosen);
-        console.log("Genre ID selected: " + genreChosen);
-        console.log("Rating clicked: " + movieRatingChosen);
-        // generateMovies(genreChose, decadeChosen, movieRatingChosen);
-    } else if(decadeChosen && movieRatingChosen === $(this).data("rating")) {
-        // If there is a decade already selected
-        // and the user clicks on the same movie rating button, then 
-        // deselect the movie rating and run the generateMovies function with
-        // only two parameters applied (genre and decade)
-        movieRatingChosen = "";
-        $(this).removeClass("rating-button-selected");
-
-        console.log("Decade clicked: " + decadeChosen);
-        console.log("Genre ID selected: " + genreChosen);
-        console.log("Rating clicked: " + movieRatingChosen);
-        // generateMovies(genreChosen, movieRatingChosen);
-    }  else if(decadeChosen === "" && movieRatingChosen === $(this).data("rating")) {
-        // If there isn't a decade selected
-        // and the user clicks on an already selected movie rating button, then 
-        // deselect the movie rating and run the generateMovies function with
-        // only one parameter applied (genre)
-        movieRatingChosen = "";
-        $(this).removeClass("rating-button-selected");
-
-        console.log("Decade clicked: " + decadeChosen);
-        console.log("Genre ID selected: " + genreChosen);
-        console.log("Rating clicked: " + movieRatingChosen);
-        // generateMovies(genreChosen);
-    } else {
-        $(this).addClass("rating-button-selected");
-        movieRatingChosen = $(this).data("rating");
-        console.log("Decade clicked: " + decadeChosen);
-        console.log("Genre ID selected: " + genreChosen);
-        console.log("Rating clicked: " + movieRatingChosen);
-        // generateMovies(genreChosen, movieRatingChosen);
-    }
     console.log("_______________");
 });
 
