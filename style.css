@@ -60,7 +60,6 @@ h1 {
 footer {
     text-align: center;
     font-family: 'Playfair Display SC', serif;
-
 }
 
 .genre-chosen {
@@ -69,16 +68,16 @@ footer {
 }
 
 .rating-button-selected {
-    background-color: #BA274A;
+    background-color: #2A0C4E;
     color: #FFFFFF!important;
 }
 
 .year-button-selected {
-    background-color: #BA274A;
+    background-color: #2A0C4E;
     color: #FFFFFF!important;
 }
 
-#genre-label {
+.genre-label {
     margin-bottom: 20px;
 }
 
@@ -98,8 +97,12 @@ footer {
 }
 
 .poster-loading {
-    font-size: 120px;
+    font-size: 80px;
     border: none;
     position: absolute;
     z-index: 1;
+}
+
+.poster-img {
+    
 }

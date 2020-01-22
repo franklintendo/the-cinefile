@@ -155,7 +155,7 @@ $.ajax({
 
                                 var poster = response3.Poster;
                                 var imgEl = $("<img>");
-                                imgEl.attr("src", poster).attr("alt",response3.Title).attr("width","200").attr("height","auto").attr("style", "width: 200px!important;");
+                                imgEl.attr("src", poster).attr("alt",response3.Title).attr("width","200").attr("height","auto").attr("style", "width: 200px!important;").attr("class", "poster-img");
 
                                 columnsContainer.append(columnImg);
                                 columnsContainer.append(columnContent);
