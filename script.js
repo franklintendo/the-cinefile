@@ -22,7 +22,10 @@ function generateRandomMovie() {
             console.log(response3.Rated);
             var poster = response3.Poster;
             var imgEl = $("<img>");
-            imgEl.attr("src", poster).attr("alt",response3.Title).attr("width","200").attr("height","auto");
+            imgEl.attr("src", poster).attr("alt",response3.Title).attr("width", "200").attr("height", "auto");
+            $(imgEl).addClass("posters");
+            console.log(imgEl)
+
             $(".randomMovie").append(imgEl);
             } else {
                 var imgEl2 = $("<img>");
@@ -122,7 +125,7 @@ $.ajax({
                             console.log(response3.Rated);
                             var poster = response3.Poster;
                             var imgEl = $("<img>");
-                            imgEl.attr("src", poster).attr("alt",response3.Title).attr("width","200").attr("height","auto");
+                            imgEl.attr("src", poster).attr("alt",response3.Title)
                             $(".posters").append(imgEl);
                         };
                     });
