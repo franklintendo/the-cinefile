@@ -35,3 +35,18 @@ footer {
     font-family: 'Playfair Display SC', serif;
 
 }
+
+.genre-chosen {
+    background-color: #6369D1;
+    color: #FFFFFF!important;
+}
+
+.rating-button-selected {
+    background-color: #DB7F8E;
+    color: #FFFFFF!important;
+}
+
+.year-button-selected {
+    background-color: #DB7F8E;
+    color: #FFFFFF!important;
+}
