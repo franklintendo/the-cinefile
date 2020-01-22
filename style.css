@@ -4,6 +4,7 @@
 }
 .posters {
     width: 40%;
+    float: left;
 }
 a.navbar-item:hover {
     color: #800000
