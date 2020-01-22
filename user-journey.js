@@ -8,8 +8,8 @@ var movieRatingChosen = "";
 // Dynamically generate buttons based
 // on the genres a user can choose
 for (var i=0;i < genres.length;i++) {
-    var column = $('<div class="column is-narrow">');
-    var button = $('<button class="button genre-choice-button">');
+    var column = $('<div class="column is-half-mobile is-one-quarter-tablet genre-choice-col is-inline-flex">');
+    var button = $('<button class="button genre-choice-button is-fullwidth is-size-7">');
 
     column.append(button);
     button.text(genres[i].name);
@@ -50,6 +50,7 @@ $('#submit-genre-button').on("click", function(){
         // Only display the button with the genre the user chose
         $('.genre-chosen').parent().removeClass("is-hidden");
         $('.genre-chosen').parent().addClass("is-inline-flex");
+        $('.genre-chosen').parent().removeClass("is-half-mobile is-one-quarter-tablet");
 
         // Feed the user's selected genre into the movie API
         generateMovies(genreChosen);
@@ -59,7 +60,9 @@ $('#submit-genre-button').on("click", function(){
         console.log("Decade clicked: " + decadeChosen);
         console.log("Genre ID selected: " + genreChosen);
         console.log("Rating clicked: " + movieRatingChosen);
-        
+        $('#filter-sidebar').removeClass('is-12'); 
+        $('#filter-sidebar').addClass('is-4'); 
+        $('.posters').removeClass('is-hidden');
     }
 });
 
@@ -212,7 +215,10 @@ function removeGenreChoice() {
     $('.posters').html("");
     // Remove the genre chosen class from all the genre buttons
     // since the user is deselecting their choice
-    $('.genre-choice-button').removeClass('genre-chosen');
+    $('.genre-choice-button').parent().removeClass('genre-chosen');
+    // $('.genre-choice-button').removeClass('is-12');
+    // $('.genre-choice-button').removeClass('is-3');
+    // $('.genre-choice-button').addClass('is-3');
 
     // Show all options again
     $('.genre-choice-button').parent().removeClass("is-hidden");
@@ -224,5 +230,9 @@ function removeGenreChoice() {
 
     // Remove the decade and movie rating buttons
     $('#extra-buttons').addClass('is-hidden');
+
+    $('#filter-sidebar').removeClass('is-4'); 
+    $('#filter-sidebar').addClass('is-12'); 
+    $('.posters').addClass('is-hidden');
 }
 
