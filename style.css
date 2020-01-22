@@ -27,15 +27,25 @@ h1 {
 }
 
 .genre-choice-button{
-    font-family: 'Playfair Display SC', serif;
+    border-color: #800020;
+    color: #800020;
+    font-weight: 600;
+    /* font-family: 'Playfair Display SC', serif; */
 
 }
 .genre-choice-button:hover {
    
-    border-color: gold;
-    color: lightseagreen;     
-    font-family: 'Playfair Display SC', serif;
+    border-color: #800020;
+    background-color: #BA274A;
+    color: #FFFFFF!important;     
+    /* font-family: 'Playfair Display SC', serif; */
 
+  }
+
+  .genre-choice-button:active {
+    border-color: #800020;
+    background-color: #800020;
+    color: #FFFFFF!important;     
   }
 
   img {
@@ -45,11 +55,14 @@ h1 {
     justify-content: center;
 }
 #submit-genre-button {
+    border-color: #2A0C4E;
+    color: #2A0C4E;
     font-family: 'Playfair Display SC', serif;
 }
 #submit-genre-button:hover {
-    border-color: green;
-    color: lightseagreen;  
+    border-color: #2A0C4E;
+    background-color: #2A0C4E;
+    color: #FFFFFF;  
     font-family: 'Playfair Display SC', serif;
 }
 
@@ -60,16 +73,42 @@ footer {
 }
 
 .genre-chosen {
-    background-color: #6369D1;
+    background-color: #800020;
     color: #FFFFFF!important;
 }
 
 .rating-button-selected {
-    background-color: #DB7F8E;
+    background-color: #BA274A;
     color: #FFFFFF!important;
 }
 
 .year-button-selected {
-    background-color: #DB7F8E;
+    background-color: #BA274A;
     color: #FFFFFF!important;
+}
+
+#genre-label {
+    margin-bottom: 20px;
+}
+
+.genre-choice-col {
+    padding: 5px;
+}
+
+#filter-sidebar {
+    
+}
+
+.poster-col {
+    border-bottom: 1px solid #e1e1e1;
+    z-index: 100;
+    position: relative;
+    background-color: #FFFFFF;
+}
+
+.poster-loading {
+    font-size: 120px;
+    border: none;
+    position: absolute;
+    z-index: 1;
 }
