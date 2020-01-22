@@ -4,10 +4,10 @@
 
 function generateRandomMovie() {
     var movieLength = movies.length;
-    console.log(movieLength);
+    // console.log(movieLength);
 
     var movie = movies[Math.floor(Math.random() * movieLength)].entity;
-    console.log(movie);
+    // console.log(movie);
     
     var queryURLomdb = "https://www.omdbapi.com/?t=" + movie + "&apikey=trilogy";
 
@@ -16,10 +16,10 @@ function generateRandomMovie() {
     url: queryURLomdb,
     method: "GET"
     }).then(function(response3) {
-            console.log(response3)
+            // console.log(response3)
         // && response3.Rated === "R" if we want to filter by rating
             if (response3.Poster) {
-            console.log(response3.Rated);
+            // console.log(response3.Rated);
             var poster = response3.Poster;
             var imgEl = $("<img>");
             imgEl.attr("src", poster).attr("alt",response3.Title).attr("width", "200").attr("height", "auto");
@@ -36,7 +36,7 @@ function generateRandomMovie() {
     });
 }
 
-function generateMovies(genreID, year) {
+function generateMovies(genreID, year, rating) {
 
 // api key
 var apiKey = "&api_key=acb4c32a00f4cc5e0b30b2fb2f5a1adb";
@@ -61,45 +61,57 @@ function getRange(year) {
 
 var chosenStart = getRange(year).start;
 var chosenEnd = getRange(year).end;
-console.log(chosenStart);
+// console.log(chosenStart);
 var yearFilter = chosenStart + chosenEnd;
 
 // genre filter
-var genresList = genres;    
-var chosenGenreName = genresList[1].name;
+// var genresList = genres;    
+// var chosenGenreName = genresList[1].name;
 var chosenGenreID = genreID;
 
 var genreFilter = "&with_genres=" + chosenGenreID;
 
-// ratings filter 
+// movie rating
+var movieRating =  rating;
+if (movieRating) {
+    movieRating = movieRating;
+} else {
+    movieRating = "R";
+}
+
+// rotten tomatoes ratings filter 
 var ratingFloor = 7.0;
 var ratingFloorRotten = ratingFloor / 100;
 var ratingFilter = "&vote_average.gte=" + ratingFloor;
 
 // query constructor
 var queryURL = defaultURL + yearFilter + genreFilter + ratingFilter;
-console.log(queryURL);
+// console.log(queryURL);
 
 // filter by english language movies
 var cleanQuery = queryURL + "&sort_by=vote_average.desc" + "&language=en" + apiKey;
-console.log(cleanQuery);
+// console.log(cleanQuery);
 
 // get a list of movies;
 var masterList = [];
+var numberOfMovies = 10;
+var movieCount = 0;
 
 $.ajax({
     url: cleanQuery,
     method: "GET"
   }).then(function(response) {
-    console.log(response);
+    // console.log(response);
 
     var pages = response.total_pages
+    var randomPage = Math.floor(Math.random() * pages);
+    // console.log(randomPage);
     var movieList = [];
     // var movieListClean = [];
 
     for (let j = 0; j < pages; j++) {
         queryToRun = queryURL + "&sort_by=vote_average.desc" + "&page=" + (j + 1) + apiKey;
-        console.log(queryToRun);
+        // console.log(queryToRun);
         $.ajax({
             url: queryToRun,
             method: "GET"
@@ -109,24 +121,51 @@ $.ajax({
                 // console.log(response2.results[i].title);
                 if (response2.results[i].original_language === "en") {
                     var movie = response2.results[i].title;
-                    movieList.push(movie);
 
                     var movieChosen = movie.trim();
                     movieChosen = movieChosen.replace(" ","+")
                     var queryURLomdb = "https://www.omdbapi.com/?t=" + movieChosen + "&apikey=trilogy";
+
 
                      // Creates AJAX call for the specific movie button being clicked
                     $.ajax({
                     url: queryURLomdb,
                     method: "GET"
                     }).then(function(response3) {
-                        // && response3.Rated === "R" if we want to filter by rating
-                        if ((parseInt(response3.Ratings[1].Value) > ratingFloorRotten)) {
-                            console.log(response3.Rated);
-                            var poster = response3.Poster;
-                            var imgEl = $("<img>");
-                            imgEl.attr("src", poster).attr("alt",response3.Title)
-                            $(".posters").append(imgEl);
+
+                        if ((parseInt(response3.Ratings[1].Value) > ratingFloorRotten) && response3.Rated === movieRating && movieCount < numberOfMovies) {
+                                console.log(response3);
+                                movieCount++;
+                                var movieToAdd = response3.Title;
+                                masterList.push(movieToAdd);
+                                // console.log(masterList);
+                                // console.log(response3.Rated);
+                                var columnsContainer = $('<div class="columns poster-col">');
+
+                                var columnImg = $('<div class="column is-narrow">');
+
+                                var columnContent = $('<div class="column">');
+
+                                columnContent.html("<h1>" + response3.Title + "</h1>" + "<p><span style='font-weight: bold'>Director:</span> " + response3.Director + "</p>" +
+                                "<p><span style='font-weight: bold'>Year:</span> " + response3.Year + "</p><br/>" +
+                                "<p><span style='font-weight: bold'>Plot:</span> " + response3.Plot + "</p>"
+                                );
+
+                                $(".posters").append(columnsContainer);
+
+                                var poster = response3.Poster;
+                                var imgEl = $("<img>");
+                                imgEl.attr("src", poster).attr("alt",response3.Title).attr("width","200").attr("height","auto").attr("style", "width: 200px!important;");
+
+                                columnsContainer.append(columnImg);
+                                columnsContainer.append(columnContent);
+
+                                columnImg.append(imgEl);
+                                
+
+                                // $(".posters").append(imgEl);
+                                // $(".posters").append("<br>");
+
                         };
                     });
 
@@ -134,13 +173,31 @@ $.ajax({
             };
             // console.log(movieList);
             // console.log(movieList.length);
-            masterList = movieList;
+            // masterList = movieList;
         });
         
     };
     // console.log(masterList);
     // console.log(masterList.length);
-  });
+
+    // generate 10 random movies from the master list
+    // console.log(masterList);
+    // var numberOfMovies = 10;
+    // var randomFloor = 0;
+    // var randomCeiling = 0;
+    // if (masterList.length < 10) {
+    //     randomFloor = 0;
+    //     randomCeiling = masterList.length;
+    // } else {
+    //     randomFloor = Math.floor(Math.random() * (masterList.length - numberOfMovies));
+    //     randomCeiling = randomFloor + 9;
+    // }
+
+    // console.log(randomFloor);
+    // console.log(randomCeiling);
+
+});
+
 
 };
 
