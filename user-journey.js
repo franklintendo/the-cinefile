@@ -196,9 +196,17 @@ function selectGenreChoice(genreChoice) {
 
 // Helper function for when a user deselects a genre
 function removeGenreChoice() {
-    // set this variable to the chosen ID to feed into 
+    // reset this Genre ID variable to feed into 
     // the API later
     userGenreId = "";
+
+    // Reset the movie rating and decade chosen variables
+    // if they deselect the genre
+    movieRatingChosen = "";
+    decadeChosen = "";
+    $('.movie-rating-button').removeClass("rating-button-selected");
+    $('.year-button').removeClass("year-button-selected");
+
 
     // Remove all posters 
     $('.posters').html("");
