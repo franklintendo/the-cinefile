@@ -9,13 +9,18 @@ var movieRatingChosen = "";
 // on the genres a user can choose
 for (var i=0;i < genres.length;i++) {
     var column = $('<div class="column is-half-mobile is-one-quarter-tablet genre-choice-col is-inline-flex">');
-    var button = $('<button class="button genre-choice-button is-fullwidth is-size-7">');
-
+    var button = $('<button class="button genre-choice-button is-fullwidth is-size-7-mobile is-size-6-tablet">');
+    var icon = $('<i>');
+    
+    icon.attr("class", genres[i].icon + " is-block").attr("style", "margin-right: 10px;");
     column.append(button);
     button.text(genres[i].name);
     button.attr("data-genre", genres[i].name);
     button.attr("data-id", genres[i].id);
+    button.prepend(icon);
     $('#genre-buttons').append(column);
+
+
 }
 
 // If you click on any of the genre buttons
@@ -171,6 +176,10 @@ function removeGenreChoice() {
 
     // Show all options again
     $('.genre-choice-button').parent().removeClass("is-hidden");
+    $('.genre-choice-button').parent().removeClass("is-half-mobile");
+    $('.genre-choice-button').parent().removeClass("is-one-quarter-tablet");
+    $('.genre-choice-button').parent().addClass("is-half-mobile");
+    $('.genre-choice-button').parent().addClass("is-one-quarter-tablet");
     $('.genre-choice-button').parent().addClass("is-inline-flex");
 
     // Show submit button again

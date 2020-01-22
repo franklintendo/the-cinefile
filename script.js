@@ -32,6 +32,8 @@ function generateRandomMovie() {
                 imgEl2.attr("src", "http://www.impawards.com/2014/posters/dumb_and_dumber_to_ver8.jpg").attr("alt","Dumb and Dumber").attr("width","100%").attr("height","auto");
             
                 $(".randomMovie").append(imgEl2);
+
+                
             }
     
     });

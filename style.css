@@ -12,12 +12,35 @@ header {
 }
 .navbar-burger{
     margin-left: 0;
-    
+    color: #FFFFFF!important;
 }
 
+.navbar {
+    background-color: #69001B;
+    color: #FFFFFF;
+}
+
+a.navbar-item h1 {
+    color: #FFFFFF;
+    display: inline;
+}
+
+a.navbar-item .fa-film {
+    font-size: 32px; 
+    margin-right: 7px;
+    margin-top: 3px;
+}
+
+a.navbar-item {
+    color: #FFFFFF;
+}
 
 a.navbar-item:hover {
-    color: #800000
+    color: #800000;
+}
+
+a.navbar-item:hover h1{
+    color: #800000;
 }
 h1 {
     font-size: 2em;
@@ -28,7 +51,7 @@ h1 {
 }
 
 .genre-choice-button{
-    border-color: #800020;
+    border-color: #AD7382;
     color: #800020;
     font-weight: 600;
     /* font-family: 'Playfair Display SC', serif; */
@@ -52,6 +75,15 @@ h1 {
   img {
       margin: 10px;
   }
+
+  .card-header {
+      background-color: #121F2A;
+      color: #FFFFFF;
+  }
+
+  .card-header h1 {
+      color: #FFFFFF;
+  }
 .is-horizontal-center{
     justify-content: center;
 }
@@ -70,6 +102,7 @@ h1 {
 footer {
     text-align: center;
     font-family: 'Playfair Display SC', serif;
+    background-color: #F0EEEA;
 }
 
 .genre-chosen {
@@ -115,4 +148,10 @@ footer {
 
 .poster-img {
     
+}
+
+h1 .fa-star {
+    color: #DEBA6F;
+    font-size: 16px;
+    margin: 10px 20px;
 }

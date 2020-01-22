@@ -8,7 +8,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
     <link rel="stylesheet" href="style.css">
-    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <!-- <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display+SC&display=swap" rel="stylesheet"> 
     <title>The Cinefile</title>
     <style>
@@ -18,8 +19,9 @@
 </head>
 <body>
   <nav class="navbar" role="navigation" aria-label="main navigation">
-    <a class="navbar-item" href="index.html">
-      <img src="https://img.icons8.com/ios-filled/100/000000/movie.png">
+    <a class="navbar-item is-size-7-mobile" href="index.html">
+      <!-- <img src="https://img.icons8.com/ios-filled/100/000000/movie.png"> -->
+      <i class="fas fa-film is-size-4-mobile"></i>
       <h1>THE CINEFILE</h1>
     </a>
     <div class="navbar-brand">
@@ -31,8 +33,8 @@
     </div>
      
   
-    <div id="navbarBasicExample" class="navbar-menu">
-      <div class="navbar-start">
+    <div class="navbar-menu">
+      <div class="navbar-end">
       <a href="index.html" class="navbar-item">
         Featured Movie
       </a>
@@ -43,17 +45,19 @@
       </div>
   </div>
   </nav>
+
+
   <div class="card">
     <header class="card-header">
-      <h1 id= "randMovie" class="card-header-title is-flex is-horizontal-center">
-        Movie Finder
+      <h1 id="findMovie" class="card-header-title is-flex is-horizontal-center is-size-5-mobile">
+        <i class="fas fa-star"></i> Movie Finder <i class="fas fa-star"></i>
       </h1>
     </header>
 
     <div class="section">
         <div class="columns">  
             <div id="filter-sidebar" class="column is-12">  
-                <p id="" class="has-text-weight-bold is-size-7 has-text-centered genre-label">Select a genre: </p>
+                <p id="" class="has-text-weight-bold is-size-6 has-text-centered genre-label">Select a genre: </p>
                 <div id="genre-buttons" class="columns is-centered is-multiline">  
                 </div>
                 <div id="extra-buttons" class="columns is-vcentered is-centered is-mobile is-multiline is-hidden">
