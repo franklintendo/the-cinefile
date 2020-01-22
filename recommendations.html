@@ -18,13 +18,37 @@
 </head>
 <body>
   <nav class="navbar" role="navigation" aria-label="main navigation">
+    <a class="navbar-item" href="index.html">
+      <img src="https://img.icons8.com/ios-filled/100/000000/movie.png">
+      <h1>THE CINEFILE</h1>
+    </a>
     <div class="navbar-brand">
-      <a class="navbar-item" href="index.html">
-        <img src="https://img.icons8.com/ios-filled/100/000000/movie.png">
-        <h1>THE CINEFILE</h1>
+      <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="true" data-target="navbarBasicExample">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
       </a>
     </div>
+     
+  
+    <div id="navbarBasicExample" class="navbar-menu">
+      <div class="navbar-start">
+      <a href="index.html" class="navbar-item">
+        Featured Movie
+      </a>
+
+      <a href= "recommendations.html" class="navbar-item">
+        Movie Finder
+      </a>
+      </div>
+  </div>
   </nav>
+  <div class="card">
+    <header class="card-header">
+      <h1 id= "randMovie" class="card-header-title is-flex is-horizontal-center">
+        Movie Finder
+      </h1>
+    </header>
 
     <div class="section">
         <div class="columns">  
