@@ -1,8 +1,14 @@
 // lets construct some queryURLs
 // this query works (use to debug)
 // https://api.themoviedb.org/3/discover/movie?primary_release_date.gte=2014-09-15&primary_release_date.lte=2014-10-22&api_key=acb4c32a00f4cc5e0b30b2fb2f5a1adb
+function generateCaroMovies() {
+    generateRandomMovie(".picOne");
+    generateRandomMovie(".picTwo");
+    generateRandomMovie(".picThree");
 
-function generateRandomMovie() {
+}
+
+function generateRandomMovie(pic) {
     var movieLength = movies.length;
     // console.log(movieLength);
 
@@ -26,12 +32,12 @@ function generateRandomMovie() {
             $(imgEl).addClass("posters");
             console.log(imgEl)
 
-            $(".randomMovie").append(imgEl);
+            $(pic).append(imgEl);
             } else {
-                var imgEl2 = $("<img>");
-                imgEl2.attr("src", "http://www.impawards.com/2014/posters/dumb_and_dumber_to_ver8.jpg").attr("alt","Dumb and Dumber").attr("width","100%").attr("height","auto");
+                // var imgEl2 = $("<img>");
+                // imgEl2.attr("src", "http://www.impawards.com/2014/posters/dumb_and_dumber_to_ver8.jpg").attr("alt","Dumb and Dumber").attr("width","100%").attr("height","auto");
             
-                $(".randomMovie").append(imgEl2);
+                // $(".randomMovie").append(imgEl2);
 
                 
             }
@@ -227,5 +233,3 @@ $(document).ready(function() {
     
     });
     });
-
-  
