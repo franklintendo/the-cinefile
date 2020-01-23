@@ -57,7 +57,7 @@
       </h1>
     </header>
 
-    <div class="columns">
+<div class="columns">
   <div class="column is-one-third posters randomMovie card-image is-flex is-horizontal-left">
     <div class="swiper-container">
       <div class="swiper-wrapper">
@@ -89,7 +89,6 @@
 
     </div>
  
- 
   </div>
   <footer class="footer">
     <div class="content has-text-centered">
@@ -110,18 +109,21 @@
 <!-- Initialize Swiper -->
 <script>
 generateRandomMovie();
-
+document.addEventListener("DOMContentLoaded", function(){
 var swiper = new Swiper('.swiper-container', {
+      
+      loop: true,
       spaceBetween: 30,
       centeredSlides: true,
       autoplay: {
-        delay: 2500,
+        delay: 1000,
         disableOnInteraction: false,
       },
       pagination: {
         el: '.swiper-pagination',
         clickable: true,
       },
+
       navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev',
@@ -133,7 +135,7 @@ var swiper = new Swiper('.swiper-container', {
     placeholder:'http://www.impawards.com/2014/posters/dumb_and_dumber_to_ver8.jpg',
     notFound:'http://www.impawards.com/2014/posters/dumb_and_dumber_to_ver8.jpg'
 });
-  
+});
 </script>
 
 </body>
