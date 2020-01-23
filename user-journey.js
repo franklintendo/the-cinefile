@@ -9,13 +9,18 @@ var movieRatingChosen = "";
 // on the genres a user can choose
 for (var i=0;i < genres.length;i++) {
     var column = $('<div class="column is-half-mobile is-one-quarter-tablet genre-choice-col is-inline-flex">');
-    var button = $('<button class="button genre-choice-button is-fullwidth is-size-7">');
-
+    var button = $('<button class="button genre-choice-button is-fullwidth is-size-7-mobile is-size-6-tablet">');
+    var icon = $('<i>');
+    
+    icon.attr("class", genres[i].icon + " is-block").attr("style", "margin-right: 10px;");
     column.append(button);
     button.text(genres[i].name);
     button.attr("data-genre", genres[i].name);
     button.attr("data-id", genres[i].id);
+    button.prepend(icon);
     $('#genre-buttons').append(column);
+
+
 }
 
 // If you click on any of the genre buttons
@@ -64,7 +69,7 @@ $('#submit-genre-button').on("click", function(){
         $('#filter-sidebar').addClass('is-4'); 
         $('.posters').removeClass('is-hidden');
         var loadingDiv = $("<div class='poster-loading button is-loading is-full-width'>");
-        loadingDiv.text("loading...");
+        loadingDiv.text("...");
         $(".posters").append(loadingDiv);
     }
 });
@@ -80,13 +85,15 @@ $('#submit-genre-button').on("click", function(){
     $('.year-button').removeClass("year-button-selected");
     $('.posters').empty();
     var loadingDiv = $("<div class='poster-loading button is-loading is-full-width'>");
-    loadingDiv.text("loading...");
+    loadingDiv.text("...");
     $(".posters").append(loadingDiv);
-    decadeChosen = $(this).data("decade");
-    if ($(this).hasClass("year-button-selected")) {
+    
+    if (decadeChosen === $(this).data("decade")) {
         $(this).removeClass("year-button-selected");
+        decadeChosen = "";
     } else {
         $(this).addClass("year-button-selected");
+        decadeChosen = $(this).data("decade");
     }
     generateMovies(genreChosen, decadeChosen, movieRatingChosen);
     
@@ -108,14 +115,17 @@ $('.movie-rating-button').on('click', function() {
     $('.movie-rating-button').removeClass("rating-button-selected");
     $('.posters').empty();
     var loadingDiv = $("<div class='poster-loading button is-loading is-full-width'>");
-    loadingDiv.text("loading...");
+    loadingDiv.text("...");
     $(".posters").append(loadingDiv);
-    if ($(this).hasClass("rating-button-selected")) {
+    if (movieRatingChosen === $(this).data("rating")) {
         $(this).removeClass("rating-button-selected");
+        movieRatingChosen = "";
     } else {
         $(this).addClass("rating-button-selected");
+        movieRatingChosen = $(this).data("rating");
     }
-    movieRatingChosen = $(this).data("rating");
+
+    
     generateMovies(genreChosen, decadeChosen, movieRatingChosen);
 
     // console.log("Decade clicked: " + decadeChosen);
@@ -159,13 +169,17 @@ function removeGenreChoice() {
     $('.posters').html("");
     // Remove the genre chosen class from all the genre buttons
     // since the user is deselecting their choice
-    $('.genre-choice-button').parent().removeClass('genre-chosen');
+    $('.genre-choice-button').removeClass('genre-chosen');
     // $('.genre-choice-button').removeClass('is-12');
     // $('.genre-choice-button').removeClass('is-3');
     // $('.genre-choice-button').addClass('is-3');
 
     // Show all options again
     $('.genre-choice-button').parent().removeClass("is-hidden");
+    $('.genre-choice-button').parent().removeClass("is-half-mobile");
+    $('.genre-choice-button').parent().removeClass("is-one-quarter-tablet");
+    $('.genre-choice-button').parent().addClass("is-half-mobile");
+    $('.genre-choice-button').parent().addClass("is-one-quarter-tablet");
     $('.genre-choice-button').parent().addClass("is-inline-flex");
 
     // Show submit button again

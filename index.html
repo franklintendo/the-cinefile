@@ -7,13 +7,18 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
     <link rel="stylesheet" href="style.css">
-    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+
+<!--     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script> -->
     <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css">
   <script src="https://unpkg.com/swiper/js/swiper.js"></script>
   <script src="https://unpkg.com/swiper/js/swiper.min.js"></script>
   <!-- Link Swiper's CSS -->
   <link rel="stylesheet" href="../package/css/swiper.min.css">
+
+    <!-- <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display+SC&display=swap" rel="stylesheet"> 
     <title id= "title">The Cinefile</title>
     <style>
@@ -21,19 +26,24 @@
 </head>
 <body>
   <nav class="navbar" role="navigation" aria-label="main navigation">
-    <a class="navbar-item" href="index.html">
-      <img src="https://img.icons8.com/ios-filled/100/000000/movie.png">
+    <a class="navbar-item is-size-7-mobile is-inline-flex" href="index.html">
+      <!-- <img src="https://img.icons8.com/ios-filled/100/000000/movie.png"> -->
+      <i class="fas fa-film"></i>
       <h1>THE CINEFILE</h1>
     </a>
-    <div class="navbar-brand">
+    <!-- <div class="navbar-brand"> -->
       <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="true" data-target="navbarBasicExample">
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
       </a>
-    </div>
-    <div id="navbarBasicExample" class="navbar-menu">
-      <div class="navbar-start">
+
+    <!-- </div> -->
+     
+  
+    <div class="navbar-menu">
+      <div class="navbar-end">
+
       <a href="index.html" class="navbar-item">
         Featured Movie
       </a>
@@ -45,10 +55,11 @@
   </nav>
   <div class="card">
     <header class="card-header">
-      <h1 id= "randMovie" class="card-header-title is-flex is-horizontal-center">
-        Featured Movie
+      <h1 id= "randMovie" class="card-header-title is-flex is-horizontal-center is-size-5-mobile">
+        <i class="fas fa-star"></i> Featured Movie <i class="fas fa-star"></i>
       </h1>
     </header>
+
 <div class="columns">
   <div class="column is-one-third posters randomMovie card-image is-flex is-horizontal-left">
     <div class="swiper-container">
@@ -63,13 +74,14 @@
       <div class="swiper-button-next"></div>
       <div class="swiper-button-prev"></div>
     </div>
+
       </div>
       <div class="column">
-        <div class="card-content">
+        <div id="featured-content" class="card-content">
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti quo molestias reprehenderit temporibus praesentium, repellat quisquam ad fuga deserunt maxime atque autem odit, repellendus ipsa dolorem velit doloremque delectus aliquid consequuntur ipsum doloribus. Eum corrupti magnam corporis pariatur! Reiciendis facere suscipit ullam sapiente laborum ducimus blanditiis, est minima consectetur id.Details about movie: 
         </div>      
       </div>
-      <div class="column"></div>
+      <!-- <div class="column"></div> -->
       </div>
     </div>
   </div>

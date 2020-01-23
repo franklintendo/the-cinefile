@@ -5,7 +5,11 @@ function generateCaroMovies() {
     generateRandomMovie(".picOne");
     generateRandomMovie(".picTwo");
     generateRandomMovie(".picThree");
+
+
 }
+
+
 function generateRandomMovie(pic) {
     var movieLength = movies.length;
     // console.log(movieLength);
@@ -25,12 +29,18 @@ function generateRandomMovie(pic) {
             var imgEl = $("<img>");
             imgEl.attr("src", poster).attr("alt",response3.Title);
             $(imgEl).addClass("posters");
-            // $(".swiper-slide").empty();
+
+            console.log(imgEl)
+
             $(pic).append(imgEl);
             } else {
-                var imgEl2 = $("<img>");
-                imgEl2.attr("src", "http://www.impawards.com/2014/posters/dumb_and_dumber_to_ver8.jpg").attr("alt","Dumb and Dumber").attr("width","100%").attr("height","auto");
-                $(".swiper-slide").append(imgEl2);
+                // var imgEl2 = $("<img>");
+                // imgEl2.attr("src", "http://www.impawards.com/2014/posters/dumb_and_dumber_to_ver8.jpg").attr("alt","Dumb and Dumber").attr("width","100%").attr("height","auto");
+            
+                // $(".randomMovie").append(imgEl2);
+
+                
+
             }
 });
 var images = document.querySelectorAll('img');
@@ -62,6 +72,10 @@ var chosenStart = getRange(year).start;
 var chosenEnd = getRange(year).end;
 // console.log(chosenStart);
 var yearFilter = chosenStart + chosenEnd;
+
+var endYear = year + 9;
+
+
 // genre filter
 // var genresList = genres;    
 // var chosenGenreName = genresList[1].name;
@@ -117,7 +131,11 @@ $.ajax({
                     url: queryURLomdb,
                     method: "GET"
                     }).then(function(response3) {
-                        if ((parseInt(response3.Ratings[1].Value) > ratingFloorRotten) && response3.Rated === movieRating && movieCount < numberOfMovies) {
+
+
+                        if ((parseInt(response3.Ratings[1].Value) > ratingFloorRotten) && (response3.Rated === movieRating) && (movieCount < numberOfMovies) && (response3.Year >= year && response3.Year <= endYear)) {
+
+
                                 console.log(response3);
                                 movieCount++;
                                 var movieToAdd = response3.Title;
@@ -125,8 +143,12 @@ $.ajax({
                                 // console.log(masterList);
                                 // console.log(response3.Rated);
                                 var columnsContainer = $('<div class="columns poster-col">');
-                                var columnImg = $('<div class="column is-narrow">');
-                                var columnContent = $('<div class="column">');
+
+
+                                var columnImg = $('<div class="column is-narrow has-text-centered poster-img-container">');
+
+                                var columnContent = $('<div class="column poster-content">');
+
                                 columnContent.html("<h1>" + response3.Title + "</h1>" + "<p><span style='font-weight: bold'>Director:</span> " + response3.Director + "</p>" +
                                 "<p><span style='font-weight: bold'>Year:</span> " + response3.Year + "</p><br/>" +
                                 "<p><span style='font-weight: bold'>Plot:</span> " + response3.Plot + "</p>"
@@ -134,7 +156,11 @@ $.ajax({
                                 $(".posters").append(columnsContainer);
                                 var poster = response3.Poster;
                                 var imgEl = $("<img>");
-                                imgEl.attr("src", poster).attr("alt",response3.Title).attr("width","200").attr("height","auto").attr("style", "width: 200px!important;");
+
+                          // imgEl.attr("src", poster).attr("alt",response3.Title).attr("width","200").attr("height","auto").attr("style", "width: 200px!important;").attr("onError","this.onerror=null;this.src=https://musicimage.xboxlive.com/catalog/video.movie.8D6KGWZXF09S/image?locale=en-us&mode=crop&purposes=BoxArt&q=90&h=300&w=200&format=jpg;");
+
+                                imgEl.attr("src", poster).attr("alt",response3.Title).attr("width","200").attr("height","auto").attr("style", "width: 200px;").attr("class", "poster-img");
+
                                 columnsContainer.append(columnImg);
                                 columnsContainer.append(columnContent);
                                 columnImg.append(imgEl);
@@ -174,4 +200,6 @@ $(document).ready(function() {
         $(".navbar-burger").toggleClass("is-active collapsed");
         $(".navbar-menu").toggleClass("is-active collapsed");
     });
+
     });
+
