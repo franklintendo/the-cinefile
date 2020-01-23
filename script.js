@@ -2,11 +2,21 @@
 // this query works (use to debug)
 // https://api.themoviedb.org/3/discover/movie?primary_release_date.gte=2014-09-15&primary_release_date.lte=2014-10-22&api_key=acb4c32a00f4cc5e0b30b2fb2f5a1adb
 function generateCaroMovies() {
-    generateRandomMovie(".picOne");
-    generateRandomMovie(".picTwo");
-    generateRandomMovie(".picThree");
+    var imgElOne = $("<img>");
+    imgElOne.attr("src", "https://m.media-amazon.com/images/M/MV5BMTUzMTY0Nzg0MV5BMl5BanBnXkFtZTgwMDU3MzQxMDE@._V1_SX300.jpg").attr("alt","Escape from New York");
+    $(imgElOne).addClass("posters");
+    $(".picOne").append(imgElOne);
 
-    console.log("caro movies")
+    var imgElTwo = $("<img>");
+    imgElTwo.attr("src", "https://m.media-amazon.com/images/M/MV5BZTllNWNlZjctMWQwMS00ZDc3LTg5ZjMtNzhmNzhjMmVhYTFlXkEyXkFqcGdeQXVyNTc1NTQxODI@._V1_SX300.jpg").attr("alt","Lethal Weapon");
+    $(imgElTwo).addClass("posters");
+    $(".picTwo").append(imgElTwo);
+
+    var imgElThree = $("<img>");
+    imgElThree.attr("src", "https://m.media-amazon.com/images/M/MV5BMTcyNTEyOTY0M15BMl5BanBnXkFtZTgwOTAyNzU3MDI@._V1_SX300.jpg").attr("alt","Lego Batman");
+    $(imgElThree).addClass("posters");
+    $(".picThree").append(imgElThree);
+
 }
 
 
