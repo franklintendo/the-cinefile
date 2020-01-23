@@ -129,7 +129,7 @@ footer {
 }
 
 #filter-sidebar {
-    
+    background-color: #f6f5f5;
 }
 
 .poster-col {
@@ -154,4 +154,8 @@ h1 .fa-star {
     color: #DEBA6F;
     font-size: 16px;
     margin: 10px 20px;
+}
+
+#genre-filter-container {
+    margin: 0;
 }
