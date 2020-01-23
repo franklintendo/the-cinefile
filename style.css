@@ -13,6 +13,9 @@ header {
 .navbar-burger{
     margin-left: 0;
     color: #FFFFFF!important;
+    position: absolute;
+    right: 0;
+    top: 0;
 }
 
 .navbar {
@@ -42,6 +45,10 @@ a.navbar-item:hover {
 a.navbar-item:hover h1{
     color: #800000;
 }
+.navbar-menu.is-active {
+    background-color: #69001B;
+}
+
 h1 {
     font-size: 2em;
     font-family: 'Playfair Display SC', serif;
