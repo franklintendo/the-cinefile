@@ -154,9 +154,9 @@ $.ajax({
                                 // console.log(response3.Rated);
                                 var columnsContainer = $('<div class="columns poster-col">');
 
-                                var columnImg = $('<div class="column is-narrow">');
+                                var columnImg = $('<div class="column is-narrow has-text-centered poster-img-container">');
 
-                                var columnContent = $('<div class="column">');
+                                var columnContent = $('<div class="column poster-content">');
 
                                 columnContent.html("<h1>" + response3.Title + "</h1>" + "<p><span style='font-weight: bold'>Director:</span> " + response3.Director + "</p>" +
                                 "<p><span style='font-weight: bold'>Year:</span> " + response3.Year + "</p><br/>" +
@@ -170,7 +170,7 @@ $.ajax({
 
                                 // imgEl.attr("src", poster).attr("alt",response3.Title).attr("width","200").attr("height","auto").attr("style", "width: 200px!important;").attr("onError","this.onerror=null;this.src=https://musicimage.xboxlive.com/catalog/video.movie.8D6KGWZXF09S/image?locale=en-us&mode=crop&purposes=BoxArt&q=90&h=300&w=200&format=jpg;");
 
-                                imgEl.attr("src", poster).attr("alt",response3.Title).attr("width","200").attr("height","auto").attr("style", "width: 200px!important;").attr("class", "poster-img");
+                                imgEl.attr("src", poster).attr("alt",response3.Title).attr("width","200").attr("height","auto").attr("style", "width: 200px;").attr("class", "poster-img");
 
                                 columnsContainer.append(columnImg);
                                 columnsContainer.append(columnContent);

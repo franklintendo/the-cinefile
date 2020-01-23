@@ -109,12 +109,13 @@ h1 {
 footer {
     text-align: center;
     font-family: 'Playfair Display SC', serif;
-    background-color: #F0EEEA;
+    background-color: #D3D6D8!important;
 }
 
 .genre-chosen {
     background-color: #800020;
     color: #FFFFFF!important;
+    margin: 0 10px;
 }
 
 .rating-button-selected {
@@ -139,11 +140,16 @@ footer {
     background-color: #f6f5f5;
 }
 
+#extra-buttons {
+    margin-bottom: 0;
+}
+
 .poster-col {
-    border-bottom: 1px solid #e1e1e1;
+    /* border-bottom: 1px solid #e1e1e1; */
     z-index: 100;
     position: relative;
     background-color: #FFFFFF;
+    border-bottom: 1px solid #e1e1e1;
 }
 
 .poster-loading {
@@ -166,3 +172,39 @@ h1 .fa-star {
 #genre-filter-container {
     margin: 0;
 }
+
+#decade-buttons-container {
+    padding: 10px 0;
+    margin-top: 10px; 
+    border-top: 1px solid #d6d6d6;
+    border-bottom: 1px solid #d6d6d6;
+}
+/* .poster-content {
+    border-bottom: 1px solid #e1e1e1;
+} */
+
+
+@media only screen and (max-width: 768px) {
+    .poster-content p:last-child{
+        border-bottom: 1px solid #e1e1e1;
+        padding-bottom: 20px;
+        text-align: justify;
+    }
+
+    .poster-col {
+        border-bottom: none;
+    }
+
+    .poster-col img {
+        margin: 0;
+        width: 100%!important;
+    }
+
+    .poster-img-container {
+        padding-bottom: 0;
+    }
+
+    .genre-chosen {
+        margin: 0;
+    }
+  }
